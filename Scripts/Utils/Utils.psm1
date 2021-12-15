@@ -9,5 +9,6 @@ function Login {
     #Force Stop in case of error
     $ErrorActionPreference = "Stop"
     #Connect to Azure
-    Connect-AzAccount   
+    Connect-AzAccount
+    Write-Output "`n"
 }
