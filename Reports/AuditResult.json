@@ -1,0 +1,1050 @@
+{
+  "Azure pour les étudiants": {
+    "IAM": {},
+    "MsDefenderForCloud": {
+      "2.01 Ensure that Azure Defender is set to On for VirtualMachines": {
+        "Value": "Standard",
+        "Compliance": "Compliant"
+      },
+      "2.02 Ensure that Azure Defender is set to On for AppServices": {
+        "Value": "Standard",
+        "Compliance": "Compliant"
+      },
+      "2.03 Ensure that Azure Defender is set to On for SqlServers": {
+        "Value": "Free",
+        "Compliance": "Uncompliant"
+      },
+      "2.04 Ensure that Azure Defender is set to On for SqlServerVirtualMachines": {
+        "Value": "Free",
+        "Compliance": "Uncompliant"
+      },
+      "2.05 Ensure that Azure Defender is set to On for StorageAccounts": {
+        "Value": "Standard",
+        "Compliance": "Compliant"
+      },
+      "2.06 Ensure that Azure Defender is set to On for KubernetesService": {
+        "Value": "Standard",
+        "Compliance": "Compliant"
+      },
+      "2.07 Ensure that Azure Defender is set to On for ContainerRegistry": {
+        "Value": "Standard",
+        "Compliance": "Compliant"
+      },
+      "2.08 Ensure that Azure Defender is set to On for KeyVaults": {
+        "Value": "Standard",
+        "Compliance": "Compliant"
+      },
+      "2.9 Ensure that Microsoft Defender for Endpoint (WDATP) integraiton is selected": {
+        "Value": true,
+        "Compliance": "Compliant"
+      },
+      "2.10 Ensure that Microsoft Defender for Endpoint (MCAS) integraiton is selected": {
+        "Value": true,
+        "Compliance": "Compliant"
+      },
+      "2.11 Ensure That Auto provisioning of Log Analytics agent for Azure VMs is Set to On": {
+        "Value": "On",
+        "Compliance": "Compliant"
+      },
+      "2.12 Ensure Any of the ASC Default Policy Setting is Not Set to Disabled": {
+        "Value": 0,
+        "Compliance": "Compliant"
+      },
+      "2.13 Ensure 'Additional email addresses' is Configured with a Security Contact Email": {
+        "Value": "",
+        "Compliance": "Uncompliant"
+      }
+    },
+    "StorageAccounts": {
+      "3.01 Ensure that [supportsHttpsTrafficOnly] is set to [True]": {
+        "csb10032000a599ed7c": {
+          "ResourceName": "csb10032000a599ed7c",
+          "PropertieChecked": "supportsHttpsTrafficOnly",
+          "CompliantValue": "True",
+          "CurrentValue": true,
+          "Compliance": "Compliant"
+        },
+        "csb10033fff9a650085": {
+          "ResourceName": "csb10033fff9a650085",
+          "PropertieChecked": "supportsHttpsTrafficOnly",
+          "CompliantValue": "True",
+          "CurrentValue": true,
+          "Compliance": "Compliant"
+        },
+        "csb10037ffe9a5eb83f": {
+          "ResourceName": "csb10037ffe9a5eb83f",
+          "PropertieChecked": "supportsHttpsTrafficOnly",
+          "CompliantValue": "True",
+          "CurrentValue": true,
+          "Compliance": "Compliant"
+        },
+        "csb1003bffd99d8a22d": {
+          "ResourceName": "csb1003bffd99d8a22d",
+          "PropertieChecked": "supportsHttpsTrafficOnly",
+          "CompliantValue": "True",
+          "CurrentValue": true,
+          "Compliance": "Compliant"
+        },
+        "csb1003bffdad90ad47": {
+          "ResourceName": "csb1003bffdad90ad47",
+          "PropertieChecked": "supportsHttpsTrafficOnly",
+          "CompliantValue": "True",
+          "CurrentValue": true,
+          "Compliance": "Compliant"
+        },
+        "csb1003bffdad90af8f": {
+          "ResourceName": "csb1003bffdad90af8f",
+          "PropertieChecked": "supportsHttpsTrafficOnly",
+          "CompliantValue": "True",
+          "CurrentValue": true,
+          "Compliance": "Compliant"
+        },
+        "storagetestefrei": {
+          "ResourceName": "storagetestefrei",
+          "PropertieChecked": "supportsHttpsTrafficOnly",
+          "CompliantValue": "True",
+          "CurrentValue": false,
+          "Compliance": "Uncompliant"
+        }
+      },
+      "3.02 Ensure that [KeyPolicy.keyExpirationPeriodInDays] is set to [[0-365]]": {
+        "csb10032000a599ed7c": {
+          "ResourceName": "csb10032000a599ed7c",
+          "PropertieChecked": "KeyPolicy.keyExpirationPeriodInDays",
+          "CompliantValue": "[0-365]",
+          "CurrentValue": null,
+          "Compliance": "Uncompliant"
+        },
+        "csb10033fff9a650085": {
+          "ResourceName": "csb10033fff9a650085",
+          "PropertieChecked": "KeyPolicy.keyExpirationPeriodInDays",
+          "CompliantValue": "[0-365]",
+          "CurrentValue": null,
+          "Compliance": "Uncompliant"
+        },
+        "csb10037ffe9a5eb83f": {
+          "ResourceName": "csb10037ffe9a5eb83f",
+          "PropertieChecked": "KeyPolicy.keyExpirationPeriodInDays",
+          "CompliantValue": "[0-365]",
+          "CurrentValue": null,
+          "Compliance": "Uncompliant"
+        },
+        "csb1003bffd99d8a22d": {
+          "ResourceName": "csb1003bffd99d8a22d",
+          "PropertieChecked": "KeyPolicy.keyExpirationPeriodInDays",
+          "CompliantValue": "[0-365]",
+          "CurrentValue": null,
+          "Compliance": "Uncompliant"
+        },
+        "csb1003bffdad90ad47": {
+          "ResourceName": "csb1003bffdad90ad47",
+          "PropertieChecked": "KeyPolicy.keyExpirationPeriodInDays",
+          "CompliantValue": "[0-365]",
+          "CurrentValue": null,
+          "Compliance": "Uncompliant"
+        },
+        "csb1003bffdad90af8f": {
+          "ResourceName": "csb1003bffdad90af8f",
+          "PropertieChecked": "KeyPolicy.keyExpirationPeriodInDays",
+          "CompliantValue": "[0-365]",
+          "CurrentValue": null,
+          "Compliance": "Uncompliant"
+        },
+        "storagetestefrei": {
+          "ResourceName": "storagetestefrei",
+          "PropertieChecked": "KeyPolicy.keyExpirationPeriodInDays",
+          "CompliantValue": "[0-365]",
+          "CurrentValue": 90,
+          "Compliance": "Compliant"
+        }
+      },
+      "3.05 Ensure that [allowBlobPublicAccess] is set to [False]": {
+        "csb10032000a599ed7c": {
+          "ResourceName": "csb10032000a599ed7c",
+          "PropertieChecked": "allowBlobPublicAccess",
+          "CompliantValue": "False",
+          "CurrentValue": false,
+          "Compliance": "Compliant"
+        },
+        "csb10033fff9a650085": {
+          "ResourceName": "csb10033fff9a650085",
+          "PropertieChecked": "allowBlobPublicAccess",
+          "CompliantValue": "False",
+          "CurrentValue": false,
+          "Compliance": "Compliant"
+        },
+        "csb10037ffe9a5eb83f": {
+          "ResourceName": "csb10037ffe9a5eb83f",
+          "PropertieChecked": "allowBlobPublicAccess",
+          "CompliantValue": "False",
+          "CurrentValue": false,
+          "Compliance": "Compliant"
+        },
+        "csb1003bffd99d8a22d": {
+          "ResourceName": "csb1003bffd99d8a22d",
+          "PropertieChecked": "allowBlobPublicAccess",
+          "CompliantValue": "False",
+          "CurrentValue": false,
+          "Compliance": "Compliant"
+        },
+        "csb1003bffdad90ad47": {
+          "ResourceName": "csb1003bffdad90ad47",
+          "PropertieChecked": "allowBlobPublicAccess",
+          "CompliantValue": "False",
+          "CurrentValue": false,
+          "Compliance": "Compliant"
+        },
+        "csb1003bffdad90af8f": {
+          "ResourceName": "csb1003bffdad90af8f",
+          "PropertieChecked": "allowBlobPublicAccess",
+          "CompliantValue": "False",
+          "CurrentValue": false,
+          "Compliance": "Compliant"
+        },
+        "storagetestefrei": {
+          "ResourceName": "storagetestefrei",
+          "PropertieChecked": "allowBlobPublicAccess",
+          "CompliantValue": "False",
+          "CurrentValue": true,
+          "Compliance": "Uncompliant"
+        }
+      },
+      "3.06 Ensure that [networkAcls.defaultAction] is set to [Deny]": {
+        "csb10032000a599ed7c": {
+          "ResourceName": "csb10032000a599ed7c",
+          "PropertieChecked": "networkAcls.defaultAction",
+          "CompliantValue": "Deny",
+          "CurrentValue": "Allow",
+          "Compliance": "Uncompliant"
+        },
+        "csb10033fff9a650085": {
+          "ResourceName": "csb10033fff9a650085",
+          "PropertieChecked": "networkAcls.defaultAction",
+          "CompliantValue": "Deny",
+          "CurrentValue": "Allow",
+          "Compliance": "Uncompliant"
+        },
+        "csb10037ffe9a5eb83f": {
+          "ResourceName": "csb10037ffe9a5eb83f",
+          "PropertieChecked": "networkAcls.defaultAction",
+          "CompliantValue": "Deny",
+          "CurrentValue": "Allow",
+          "Compliance": "Uncompliant"
+        },
+        "csb1003bffd99d8a22d": {
+          "ResourceName": "csb1003bffd99d8a22d",
+          "PropertieChecked": "networkAcls.defaultAction",
+          "CompliantValue": "Deny",
+          "CurrentValue": "Allow",
+          "Compliance": "Uncompliant"
+        },
+        "csb1003bffdad90ad47": {
+          "ResourceName": "csb1003bffdad90ad47",
+          "PropertieChecked": "networkAcls.defaultAction",
+          "CompliantValue": "Deny",
+          "CurrentValue": "Allow",
+          "Compliance": "Uncompliant"
+        },
+        "csb1003bffdad90af8f": {
+          "ResourceName": "csb1003bffdad90af8f",
+          "PropertieChecked": "networkAcls.defaultAction",
+          "CompliantValue": "Deny",
+          "CurrentValue": "Allow",
+          "Compliance": "Uncompliant"
+        },
+        "storagetestefrei": {
+          "ResourceName": "storagetestefrei",
+          "PropertieChecked": "networkAcls.defaultAction",
+          "CompliantValue": "Deny",
+          "CurrentValue": "Deny",
+          "Compliance": "Compliant"
+        }
+      },
+      "3.07 Ensure that [networkAcls.bypass] is set to [AzureServices]": {
+        "csb10032000a599ed7c": {
+          "ResourceName": "csb10032000a599ed7c",
+          "PropertieChecked": "networkAcls.bypass",
+          "CompliantValue": "AzureServices",
+          "CurrentValue": "AzureServices",
+          "Compliance": "Compliant"
+        },
+        "csb10033fff9a650085": {
+          "ResourceName": "csb10033fff9a650085",
+          "PropertieChecked": "networkAcls.bypass",
+          "CompliantValue": "AzureServices",
+          "CurrentValue": "AzureServices",
+          "Compliance": "Compliant"
+        },
+        "csb10037ffe9a5eb83f": {
+          "ResourceName": "csb10037ffe9a5eb83f",
+          "PropertieChecked": "networkAcls.bypass",
+          "CompliantValue": "AzureServices",
+          "CurrentValue": "AzureServices",
+          "Compliance": "Compliant"
+        },
+        "csb1003bffd99d8a22d": {
+          "ResourceName": "csb1003bffd99d8a22d",
+          "PropertieChecked": "networkAcls.bypass",
+          "CompliantValue": "AzureServices",
+          "CurrentValue": "AzureServices",
+          "Compliance": "Compliant"
+        },
+        "csb1003bffdad90ad47": {
+          "ResourceName": "csb1003bffdad90ad47",
+          "PropertieChecked": "networkAcls.bypass",
+          "CompliantValue": "AzureServices",
+          "CurrentValue": "AzureServices",
+          "Compliance": "Compliant"
+        },
+        "csb1003bffdad90af8f": {
+          "ResourceName": "csb1003bffdad90af8f",
+          "PropertieChecked": "networkAcls.bypass",
+          "CompliantValue": "AzureServices",
+          "CurrentValue": "AzureServices",
+          "Compliance": "Compliant"
+        },
+        "storagetestefrei": {
+          "ResourceName": "storagetestefrei",
+          "PropertieChecked": "networkAcls.bypass",
+          "CompliantValue": "AzureServices",
+          "CurrentValue": "AzureServices",
+          "Compliance": "Compliant"
+        }
+      },
+      "3.12 Ensure that [minimumTlsVersion] is set to [TLS1_2]": {
+        "csb10032000a599ed7c": {
+          "ResourceName": "csb10032000a599ed7c",
+          "PropertieChecked": "minimumTlsVersion",
+          "CompliantValue": "TLS1_2",
+          "CurrentValue": "TLS1_2",
+          "Compliance": "Compliant"
+        },
+        "csb10033fff9a650085": {
+          "ResourceName": "csb10033fff9a650085",
+          "PropertieChecked": "minimumTlsVersion",
+          "CompliantValue": "TLS1_2",
+          "CurrentValue": "TLS1_2",
+          "Compliance": "Compliant"
+        },
+        "csb10037ffe9a5eb83f": {
+          "ResourceName": "csb10037ffe9a5eb83f",
+          "PropertieChecked": "minimumTlsVersion",
+          "CompliantValue": "TLS1_2",
+          "CurrentValue": "TLS1_2",
+          "Compliance": "Compliant"
+        },
+        "csb1003bffd99d8a22d": {
+          "ResourceName": "csb1003bffd99d8a22d",
+          "PropertieChecked": "minimumTlsVersion",
+          "CompliantValue": "TLS1_2",
+          "CurrentValue": "TLS1_2",
+          "Compliance": "Compliant"
+        },
+        "csb1003bffdad90ad47": {
+          "ResourceName": "csb1003bffdad90ad47",
+          "PropertieChecked": "minimumTlsVersion",
+          "CompliantValue": "TLS1_2",
+          "CurrentValue": "TLS1_2",
+          "Compliance": "Compliant"
+        },
+        "csb1003bffdad90af8f": {
+          "ResourceName": "csb1003bffdad90af8f",
+          "PropertieChecked": "minimumTlsVersion",
+          "CompliantValue": "TLS1_2",
+          "CurrentValue": "TLS1_2",
+          "Compliance": "Compliant"
+        },
+        "storagetestefrei": {
+          "ResourceName": "storagetestefrei",
+          "PropertieChecked": "minimumTlsVersion",
+          "CompliantValue": "TLS1_2",
+          "CurrentValue": "TLS1_0",
+          "Compliance": "Uncompliant"
+        }
+      },
+      "3.03 Ensure Storage logging is enabled for [Queue]": {
+        "csb10032000a599ed7c": {
+          "ResourceName": "csb10032000a599ed7c",
+          "PropertieChecked": "Queue LoggingOperations",
+          "CompliantValue": "All",
+          "CurrentValue": 0,
+          "Compliance": "Uncompliant"
+        },
+        "csb10033fff9a650085": {
+          "ResourceName": "csb10033fff9a650085",
+          "PropertieChecked": "Queue LoggingOperations",
+          "CompliantValue": "All",
+          "CurrentValue": 0,
+          "Compliance": "Uncompliant"
+        },
+        "csb10037ffe9a5eb83f": {
+          "ResourceName": "csb10037ffe9a5eb83f",
+          "PropertieChecked": "Queue LoggingOperations",
+          "CompliantValue": "All",
+          "CurrentValue": 0,
+          "Compliance": "Uncompliant"
+        },
+        "csb1003bffd99d8a22d": {
+          "ResourceName": "csb1003bffd99d8a22d",
+          "PropertieChecked": "Queue LoggingOperations",
+          "CompliantValue": "All",
+          "CurrentValue": 0,
+          "Compliance": "Uncompliant"
+        },
+        "csb1003bffdad90ad47": {
+          "ResourceName": "csb1003bffdad90ad47",
+          "PropertieChecked": "Queue LoggingOperations",
+          "CompliantValue": "All",
+          "CurrentValue": 0,
+          "Compliance": "Uncompliant"
+        },
+        "csb1003bffdad90af8f": {
+          "ResourceName": "csb1003bffdad90af8f",
+          "PropertieChecked": "Queue LoggingOperations",
+          "CompliantValue": "All",
+          "CurrentValue": 0,
+          "Compliance": "Uncompliant"
+        },
+        "storagetestefrei": {
+          "ResourceName": "storagetestefrei",
+          "PropertieChecked": "Queue LoggingOperations",
+          "CompliantValue": "All",
+          "CurrentValue": 7,
+          "Compliance": "Compliant"
+        }
+      },
+      "3.10 Ensure Storage logging is enabled for [Blob]": {
+        "csb10032000a599ed7c": {
+          "ResourceName": "csb10032000a599ed7c",
+          "PropertieChecked": "Blob LoggingOperations",
+          "CompliantValue": "All",
+          "CurrentValue": 0,
+          "Compliance": "Uncompliant"
+        },
+        "csb10033fff9a650085": {
+          "ResourceName": "csb10033fff9a650085",
+          "PropertieChecked": "Blob LoggingOperations",
+          "CompliantValue": "All",
+          "CurrentValue": 0,
+          "Compliance": "Uncompliant"
+        },
+        "csb10037ffe9a5eb83f": {
+          "ResourceName": "csb10037ffe9a5eb83f",
+          "PropertieChecked": "Blob LoggingOperations",
+          "CompliantValue": "All",
+          "CurrentValue": 0,
+          "Compliance": "Uncompliant"
+        },
+        "csb1003bffd99d8a22d": {
+          "ResourceName": "csb1003bffd99d8a22d",
+          "PropertieChecked": "Blob LoggingOperations",
+          "CompliantValue": "All",
+          "CurrentValue": 0,
+          "Compliance": "Uncompliant"
+        },
+        "csb1003bffdad90ad47": {
+          "ResourceName": "csb1003bffdad90ad47",
+          "PropertieChecked": "Blob LoggingOperations",
+          "CompliantValue": "All",
+          "CurrentValue": 0,
+          "Compliance": "Uncompliant"
+        },
+        "csb1003bffdad90af8f": {
+          "ResourceName": "csb1003bffdad90af8f",
+          "PropertieChecked": "Blob LoggingOperations",
+          "CompliantValue": "All",
+          "CurrentValue": 0,
+          "Compliance": "Uncompliant"
+        },
+        "storagetestefrei": {
+          "ResourceName": "storagetestefrei",
+          "PropertieChecked": "Blob LoggingOperations",
+          "CompliantValue": "All",
+          "CurrentValue": 0,
+          "Compliance": "Uncompliant"
+        }
+      },
+      "3.11 Ensure Storage logging is enabled for [Table]": {
+        "csb10032000a599ed7c": {
+          "ResourceName": "csb10032000a599ed7c",
+          "PropertieChecked": "Table LoggingOperations",
+          "CompliantValue": "All",
+          "CurrentValue": 0,
+          "Compliance": "Uncompliant"
+        },
+        "csb10033fff9a650085": {
+          "ResourceName": "csb10033fff9a650085",
+          "PropertieChecked": "Table LoggingOperations",
+          "CompliantValue": "All",
+          "CurrentValue": 0,
+          "Compliance": "Uncompliant"
+        },
+        "csb10037ffe9a5eb83f": {
+          "ResourceName": "csb10037ffe9a5eb83f",
+          "PropertieChecked": "Table LoggingOperations",
+          "CompliantValue": "All",
+          "CurrentValue": 0,
+          "Compliance": "Uncompliant"
+        },
+        "csb1003bffd99d8a22d": {
+          "ResourceName": "csb1003bffd99d8a22d",
+          "PropertieChecked": "Table LoggingOperations",
+          "CompliantValue": "All",
+          "CurrentValue": 0,
+          "Compliance": "Uncompliant"
+        },
+        "csb1003bffdad90ad47": {
+          "ResourceName": "csb1003bffdad90ad47",
+          "PropertieChecked": "Table LoggingOperations",
+          "CompliantValue": "All",
+          "CurrentValue": 0,
+          "Compliance": "Uncompliant"
+        },
+        "csb1003bffdad90af8f": {
+          "ResourceName": "csb1003bffdad90af8f",
+          "PropertieChecked": "Table LoggingOperations",
+          "CompliantValue": "All",
+          "CurrentValue": 0,
+          "Compliance": "Uncompliant"
+        },
+        "storagetestefrei": {
+          "ResourceName": "storagetestefrei",
+          "PropertieChecked": "Table LoggingOperations",
+          "CompliantValue": "All",
+          "CurrentValue": 0,
+          "Compliance": "Uncompliant"
+        }
+      }
+    },
+    "Database": {},
+    "LoggingMonitoring": {},
+    "Network": {},
+    "VirtualMachines": {},
+    "Other": {},
+    "AppService": {}
+  },
+  "Efrei - certification Az 104 - 500": {
+    "IAM": {},
+    "MsDefenderForCloud": {
+      "2.01 Ensure that Azure Defender is set to On for VirtualMachines": {
+        "Value": "Standard",
+        "Compliance": "Compliant"
+      },
+      "2.02 Ensure that Azure Defender is set to On for AppServices": {
+        "Value": "Standard",
+        "Compliance": "Compliant"
+      },
+      "2.03 Ensure that Azure Defender is set to On for SqlServers": {
+        "Value": "Free",
+        "Compliance": "Uncompliant"
+      },
+      "2.04 Ensure that Azure Defender is set to On for SqlServerVirtualMachines": {
+        "Value": "Free",
+        "Compliance": "Uncompliant"
+      },
+      "2.05 Ensure that Azure Defender is set to On for StorageAccounts": {
+        "Value": "Standard",
+        "Compliance": "Compliant"
+      },
+      "2.06 Ensure that Azure Defender is set to On for KubernetesService": {
+        "Value": "Standard",
+        "Compliance": "Compliant"
+      },
+      "2.07 Ensure that Azure Defender is set to On for ContainerRegistry": {
+        "Value": "Standard",
+        "Compliance": "Compliant"
+      },
+      "2.08 Ensure that Azure Defender is set to On for KeyVaults": {
+        "Value": "Standard",
+        "Compliance": "Compliant"
+      },
+      "2.9 Ensure that Microsoft Defender for Endpoint (WDATP) integraiton is selected": {
+        "Value": true,
+        "Compliance": "Compliant"
+      },
+      "2.10 Ensure that Microsoft Defender for Endpoint (MCAS) integraiton is selected": {
+        "Value": true,
+        "Compliance": "Compliant"
+      },
+      "2.11 Ensure That Auto provisioning of Log Analytics agent for Azure VMs is Set to On": {
+        "Value": "On",
+        "Compliance": "Compliant"
+      },
+      "2.12 Ensure Any of the ASC Default Policy Setting is Not Set to Disabled": {
+        "Value": 0,
+        "Compliance": "Compliant"
+      },
+      "2.13 Ensure 'Additional email addresses' is Configured with a Security Contact Email": {
+        "Value": "",
+        "Compliance": "Uncompliant"
+      }
+    },
+    "StorageAccounts": {
+      "3.01 Ensure that [supportsHttpsTrafficOnly] is set to [True]": {
+        "csb10032000a599ed7c": {
+          "ResourceName": "csb10032000a599ed7c",
+          "PropertieChecked": "supportsHttpsTrafficOnly",
+          "CompliantValue": "True",
+          "CurrentValue": true,
+          "Compliance": "Compliant"
+        },
+        "csb10033fff9a650085": {
+          "ResourceName": "csb10033fff9a650085",
+          "PropertieChecked": "supportsHttpsTrafficOnly",
+          "CompliantValue": "True",
+          "CurrentValue": true,
+          "Compliance": "Compliant"
+        },
+        "csb10037ffe9a5eb83f": {
+          "ResourceName": "csb10037ffe9a5eb83f",
+          "PropertieChecked": "supportsHttpsTrafficOnly",
+          "CompliantValue": "True",
+          "CurrentValue": true,
+          "Compliance": "Compliant"
+        },
+        "csb1003bffd99d8a22d": {
+          "ResourceName": "csb1003bffd99d8a22d",
+          "PropertieChecked": "supportsHttpsTrafficOnly",
+          "CompliantValue": "True",
+          "CurrentValue": true,
+          "Compliance": "Compliant"
+        },
+        "csb1003bffdad90ad47": {
+          "ResourceName": "csb1003bffdad90ad47",
+          "PropertieChecked": "supportsHttpsTrafficOnly",
+          "CompliantValue": "True",
+          "CurrentValue": true,
+          "Compliance": "Compliant"
+        },
+        "csb1003bffdad90af8f": {
+          "ResourceName": "csb1003bffdad90af8f",
+          "PropertieChecked": "supportsHttpsTrafficOnly",
+          "CompliantValue": "True",
+          "CurrentValue": true,
+          "Compliance": "Compliant"
+        },
+        "storagetestefrei": {
+          "ResourceName": "storagetestefrei",
+          "PropertieChecked": "supportsHttpsTrafficOnly",
+          "CompliantValue": "True",
+          "CurrentValue": false,
+          "Compliance": "Uncompliant"
+        }
+      },
+      "3.02 Ensure that [KeyPolicy.keyExpirationPeriodInDays] is set to [[0-365]]": {
+        "csb10032000a599ed7c": {
+          "ResourceName": "csb10032000a599ed7c",
+          "PropertieChecked": "KeyPolicy.keyExpirationPeriodInDays",
+          "CompliantValue": "[0-365]",
+          "CurrentValue": null,
+          "Compliance": "Uncompliant"
+        },
+        "csb10033fff9a650085": {
+          "ResourceName": "csb10033fff9a650085",
+          "PropertieChecked": "KeyPolicy.keyExpirationPeriodInDays",
+          "CompliantValue": "[0-365]",
+          "CurrentValue": null,
+          "Compliance": "Uncompliant"
+        },
+        "csb10037ffe9a5eb83f": {
+          "ResourceName": "csb10037ffe9a5eb83f",
+          "PropertieChecked": "KeyPolicy.keyExpirationPeriodInDays",
+          "CompliantValue": "[0-365]",
+          "CurrentValue": null,
+          "Compliance": "Uncompliant"
+        },
+        "csb1003bffd99d8a22d": {
+          "ResourceName": "csb1003bffd99d8a22d",
+          "PropertieChecked": "KeyPolicy.keyExpirationPeriodInDays",
+          "CompliantValue": "[0-365]",
+          "CurrentValue": null,
+          "Compliance": "Uncompliant"
+        },
+        "csb1003bffdad90ad47": {
+          "ResourceName": "csb1003bffdad90ad47",
+          "PropertieChecked": "KeyPolicy.keyExpirationPeriodInDays",
+          "CompliantValue": "[0-365]",
+          "CurrentValue": null,
+          "Compliance": "Uncompliant"
+        },
+        "csb1003bffdad90af8f": {
+          "ResourceName": "csb1003bffdad90af8f",
+          "PropertieChecked": "KeyPolicy.keyExpirationPeriodInDays",
+          "CompliantValue": "[0-365]",
+          "CurrentValue": null,
+          "Compliance": "Uncompliant"
+        },
+        "storagetestefrei": {
+          "ResourceName": "storagetestefrei",
+          "PropertieChecked": "KeyPolicy.keyExpirationPeriodInDays",
+          "CompliantValue": "[0-365]",
+          "CurrentValue": 90,
+          "Compliance": "Compliant"
+        }
+      },
+      "3.05 Ensure that [allowBlobPublicAccess] is set to [False]": {
+        "csb10032000a599ed7c": {
+          "ResourceName": "csb10032000a599ed7c",
+          "PropertieChecked": "allowBlobPublicAccess",
+          "CompliantValue": "False",
+          "CurrentValue": false,
+          "Compliance": "Compliant"
+        },
+        "csb10033fff9a650085": {
+          "ResourceName": "csb10033fff9a650085",
+          "PropertieChecked": "allowBlobPublicAccess",
+          "CompliantValue": "False",
+          "CurrentValue": false,
+          "Compliance": "Compliant"
+        },
+        "csb10037ffe9a5eb83f": {
+          "ResourceName": "csb10037ffe9a5eb83f",
+          "PropertieChecked": "allowBlobPublicAccess",
+          "CompliantValue": "False",
+          "CurrentValue": false,
+          "Compliance": "Compliant"
+        },
+        "csb1003bffd99d8a22d": {
+          "ResourceName": "csb1003bffd99d8a22d",
+          "PropertieChecked": "allowBlobPublicAccess",
+          "CompliantValue": "False",
+          "CurrentValue": false,
+          "Compliance": "Compliant"
+        },
+        "csb1003bffdad90ad47": {
+          "ResourceName": "csb1003bffdad90ad47",
+          "PropertieChecked": "allowBlobPublicAccess",
+          "CompliantValue": "False",
+          "CurrentValue": false,
+          "Compliance": "Compliant"
+        },
+        "csb1003bffdad90af8f": {
+          "ResourceName": "csb1003bffdad90af8f",
+          "PropertieChecked": "allowBlobPublicAccess",
+          "CompliantValue": "False",
+          "CurrentValue": false,
+          "Compliance": "Compliant"
+        },
+        "storagetestefrei": {
+          "ResourceName": "storagetestefrei",
+          "PropertieChecked": "allowBlobPublicAccess",
+          "CompliantValue": "False",
+          "CurrentValue": true,
+          "Compliance": "Uncompliant"
+        }
+      },
+      "3.06 Ensure that [networkAcls.defaultAction] is set to [Deny]": {
+        "csb10032000a599ed7c": {
+          "ResourceName": "csb10032000a599ed7c",
+          "PropertieChecked": "networkAcls.defaultAction",
+          "CompliantValue": "Deny",
+          "CurrentValue": "Allow",
+          "Compliance": "Uncompliant"
+        },
+        "csb10033fff9a650085": {
+          "ResourceName": "csb10033fff9a650085",
+          "PropertieChecked": "networkAcls.defaultAction",
+          "CompliantValue": "Deny",
+          "CurrentValue": "Allow",
+          "Compliance": "Uncompliant"
+        },
+        "csb10037ffe9a5eb83f": {
+          "ResourceName": "csb10037ffe9a5eb83f",
+          "PropertieChecked": "networkAcls.defaultAction",
+          "CompliantValue": "Deny",
+          "CurrentValue": "Allow",
+          "Compliance": "Uncompliant"
+        },
+        "csb1003bffd99d8a22d": {
+          "ResourceName": "csb1003bffd99d8a22d",
+          "PropertieChecked": "networkAcls.defaultAction",
+          "CompliantValue": "Deny",
+          "CurrentValue": "Allow",
+          "Compliance": "Uncompliant"
+        },
+        "csb1003bffdad90ad47": {
+          "ResourceName": "csb1003bffdad90ad47",
+          "PropertieChecked": "networkAcls.defaultAction",
+          "CompliantValue": "Deny",
+          "CurrentValue": "Allow",
+          "Compliance": "Uncompliant"
+        },
+        "csb1003bffdad90af8f": {
+          "ResourceName": "csb1003bffdad90af8f",
+          "PropertieChecked": "networkAcls.defaultAction",
+          "CompliantValue": "Deny",
+          "CurrentValue": "Allow",
+          "Compliance": "Uncompliant"
+        },
+        "storagetestefrei": {
+          "ResourceName": "storagetestefrei",
+          "PropertieChecked": "networkAcls.defaultAction",
+          "CompliantValue": "Deny",
+          "CurrentValue": "Deny",
+          "Compliance": "Compliant"
+        }
+      },
+      "3.07 Ensure that [networkAcls.bypass] is set to [AzureServices]": {
+        "csb10032000a599ed7c": {
+          "ResourceName": "csb10032000a599ed7c",
+          "PropertieChecked": "networkAcls.bypass",
+          "CompliantValue": "AzureServices",
+          "CurrentValue": "AzureServices",
+          "Compliance": "Compliant"
+        },
+        "csb10033fff9a650085": {
+          "ResourceName": "csb10033fff9a650085",
+          "PropertieChecked": "networkAcls.bypass",
+          "CompliantValue": "AzureServices",
+          "CurrentValue": "AzureServices",
+          "Compliance": "Compliant"
+        },
+        "csb10037ffe9a5eb83f": {
+          "ResourceName": "csb10037ffe9a5eb83f",
+          "PropertieChecked": "networkAcls.bypass",
+          "CompliantValue": "AzureServices",
+          "CurrentValue": "AzureServices",
+          "Compliance": "Compliant"
+        },
+        "csb1003bffd99d8a22d": {
+          "ResourceName": "csb1003bffd99d8a22d",
+          "PropertieChecked": "networkAcls.bypass",
+          "CompliantValue": "AzureServices",
+          "CurrentValue": "AzureServices",
+          "Compliance": "Compliant"
+        },
+        "csb1003bffdad90ad47": {
+          "ResourceName": "csb1003bffdad90ad47",
+          "PropertieChecked": "networkAcls.bypass",
+          "CompliantValue": "AzureServices",
+          "CurrentValue": "AzureServices",
+          "Compliance": "Compliant"
+        },
+        "csb1003bffdad90af8f": {
+          "ResourceName": "csb1003bffdad90af8f",
+          "PropertieChecked": "networkAcls.bypass",
+          "CompliantValue": "AzureServices",
+          "CurrentValue": "AzureServices",
+          "Compliance": "Compliant"
+        },
+        "storagetestefrei": {
+          "ResourceName": "storagetestefrei",
+          "PropertieChecked": "networkAcls.bypass",
+          "CompliantValue": "AzureServices",
+          "CurrentValue": "AzureServices",
+          "Compliance": "Compliant"
+        }
+      },
+      "3.12 Ensure that [minimumTlsVersion] is set to [TLS1_2]": {
+        "csb10032000a599ed7c": {
+          "ResourceName": "csb10032000a599ed7c",
+          "PropertieChecked": "minimumTlsVersion",
+          "CompliantValue": "TLS1_2",
+          "CurrentValue": "TLS1_2",
+          "Compliance": "Compliant"
+        },
+        "csb10033fff9a650085": {
+          "ResourceName": "csb10033fff9a650085",
+          "PropertieChecked": "minimumTlsVersion",
+          "CompliantValue": "TLS1_2",
+          "CurrentValue": "TLS1_2",
+          "Compliance": "Compliant"
+        },
+        "csb10037ffe9a5eb83f": {
+          "ResourceName": "csb10037ffe9a5eb83f",
+          "PropertieChecked": "minimumTlsVersion",
+          "CompliantValue": "TLS1_2",
+          "CurrentValue": "TLS1_2",
+          "Compliance": "Compliant"
+        },
+        "csb1003bffd99d8a22d": {
+          "ResourceName": "csb1003bffd99d8a22d",
+          "PropertieChecked": "minimumTlsVersion",
+          "CompliantValue": "TLS1_2",
+          "CurrentValue": "TLS1_2",
+          "Compliance": "Compliant"
+        },
+        "csb1003bffdad90ad47": {
+          "ResourceName": "csb1003bffdad90ad47",
+          "PropertieChecked": "minimumTlsVersion",
+          "CompliantValue": "TLS1_2",
+          "CurrentValue": "TLS1_2",
+          "Compliance": "Compliant"
+        },
+        "csb1003bffdad90af8f": {
+          "ResourceName": "csb1003bffdad90af8f",
+          "PropertieChecked": "minimumTlsVersion",
+          "CompliantValue": "TLS1_2",
+          "CurrentValue": "TLS1_2",
+          "Compliance": "Compliant"
+        },
+        "storagetestefrei": {
+          "ResourceName": "storagetestefrei",
+          "PropertieChecked": "minimumTlsVersion",
+          "CompliantValue": "TLS1_2",
+          "CurrentValue": "TLS1_0",
+          "Compliance": "Uncompliant"
+        }
+      },
+      "3.03 Ensure Storage logging is enabled for [Queue]": {
+        "csb10032000a599ed7c": {
+          "ResourceName": "csb10032000a599ed7c",
+          "PropertieChecked": "Queue LoggingOperations",
+          "CompliantValue": "All",
+          "CurrentValue": 0,
+          "Compliance": "Uncompliant"
+        },
+        "csb10033fff9a650085": {
+          "ResourceName": "csb10033fff9a650085",
+          "PropertieChecked": "Queue LoggingOperations",
+          "CompliantValue": "All",
+          "CurrentValue": 0,
+          "Compliance": "Uncompliant"
+        },
+        "csb10037ffe9a5eb83f": {
+          "ResourceName": "csb10037ffe9a5eb83f",
+          "PropertieChecked": "Queue LoggingOperations",
+          "CompliantValue": "All",
+          "CurrentValue": 0,
+          "Compliance": "Uncompliant"
+        },
+        "csb1003bffd99d8a22d": {
+          "ResourceName": "csb1003bffd99d8a22d",
+          "PropertieChecked": "Queue LoggingOperations",
+          "CompliantValue": "All",
+          "CurrentValue": 0,
+          "Compliance": "Uncompliant"
+        },
+        "csb1003bffdad90ad47": {
+          "ResourceName": "csb1003bffdad90ad47",
+          "PropertieChecked": "Queue LoggingOperations",
+          "CompliantValue": "All",
+          "CurrentValue": 0,
+          "Compliance": "Uncompliant"
+        },
+        "csb1003bffdad90af8f": {
+          "ResourceName": "csb1003bffdad90af8f",
+          "PropertieChecked": "Queue LoggingOperations",
+          "CompliantValue": "All",
+          "CurrentValue": 0,
+          "Compliance": "Uncompliant"
+        },
+        "storagetestefrei": {
+          "ResourceName": "storagetestefrei",
+          "PropertieChecked": "Queue LoggingOperations",
+          "CompliantValue": "All",
+          "CurrentValue": 7,
+          "Compliance": "Compliant"
+        }
+      },
+      "3.10 Ensure Storage logging is enabled for [Blob]": {
+        "csb10032000a599ed7c": {
+          "ResourceName": "csb10032000a599ed7c",
+          "PropertieChecked": "Blob LoggingOperations",
+          "CompliantValue": "All",
+          "CurrentValue": 0,
+          "Compliance": "Uncompliant"
+        },
+        "csb10033fff9a650085": {
+          "ResourceName": "csb10033fff9a650085",
+          "PropertieChecked": "Blob LoggingOperations",
+          "CompliantValue": "All",
+          "CurrentValue": 0,
+          "Compliance": "Uncompliant"
+        },
+        "csb10037ffe9a5eb83f": {
+          "ResourceName": "csb10037ffe9a5eb83f",
+          "PropertieChecked": "Blob LoggingOperations",
+          "CompliantValue": "All",
+          "CurrentValue": 0,
+          "Compliance": "Uncompliant"
+        },
+        "csb1003bffd99d8a22d": {
+          "ResourceName": "csb1003bffd99d8a22d",
+          "PropertieChecked": "Blob LoggingOperations",
+          "CompliantValue": "All",
+          "CurrentValue": 0,
+          "Compliance": "Uncompliant"
+        },
+        "csb1003bffdad90ad47": {
+          "ResourceName": "csb1003bffdad90ad47",
+          "PropertieChecked": "Blob LoggingOperations",
+          "CompliantValue": "All",
+          "CurrentValue": 0,
+          "Compliance": "Uncompliant"
+        },
+        "csb1003bffdad90af8f": {
+          "ResourceName": "csb1003bffdad90af8f",
+          "PropertieChecked": "Blob LoggingOperations",
+          "CompliantValue": "All",
+          "CurrentValue": 0,
+          "Compliance": "Uncompliant"
+        },
+        "storagetestefrei": {
+          "ResourceName": "storagetestefrei",
+          "PropertieChecked": "Blob LoggingOperations",
+          "CompliantValue": "All",
+          "CurrentValue": 0,
+          "Compliance": "Uncompliant"
+        }
+      },
+      "3.11 Ensure Storage logging is enabled for [Table]": {
+        "csb10032000a599ed7c": {
+          "ResourceName": "csb10032000a599ed7c",
+          "PropertieChecked": "Table LoggingOperations",
+          "CompliantValue": "All",
+          "CurrentValue": 0,
+          "Compliance": "Uncompliant"
+        },
+        "csb10033fff9a650085": {
+          "ResourceName": "csb10033fff9a650085",
+          "PropertieChecked": "Table LoggingOperations",
+          "CompliantValue": "All",
+          "CurrentValue": 0,
+          "Compliance": "Uncompliant"
+        },
+        "csb10037ffe9a5eb83f": {
+          "ResourceName": "csb10037ffe9a5eb83f",
+          "PropertieChecked": "Table LoggingOperations",
+          "CompliantValue": "All",
+          "CurrentValue": 0,
+          "Compliance": "Uncompliant"
+        },
+        "csb1003bffd99d8a22d": {
+          "ResourceName": "csb1003bffd99d8a22d",
+          "PropertieChecked": "Table LoggingOperations",
+          "CompliantValue": "All",
+          "CurrentValue": 0,
+          "Compliance": "Uncompliant"
+        },
+        "csb1003bffdad90ad47": {
+          "ResourceName": "csb1003bffdad90ad47",
+          "PropertieChecked": "Table LoggingOperations",
+          "CompliantValue": "All",
+          "CurrentValue": 0,
+          "Compliance": "Uncompliant"
+        },
+        "csb1003bffdad90af8f": {
+          "ResourceName": "csb1003bffdad90af8f",
+          "PropertieChecked": "Table LoggingOperations",
+          "CompliantValue": "All",
+          "CurrentValue": 0,
+          "Compliance": "Uncompliant"
+        },
+        "storagetestefrei": {
+          "ResourceName": "storagetestefrei",
+          "PropertieChecked": "Table LoggingOperations",
+          "CompliantValue": "All",
+          "CurrentValue": 0,
+          "Compliance": "Uncompliant"
+        }
+      }
+    },
+    "Database": {},
+    "LoggingMonitoring": {},
+    "Network": {},
+    "VirtualMachines": {},
+    "Other": {},
+    "AppService": {}
+  }
+}
