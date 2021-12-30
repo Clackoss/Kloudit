@@ -2,7 +2,7 @@
 .SYNOPSIS
 Get some resource configuration properties
 .DESCRIPTION
-Used for CIS
+Used for CIS 3.1 - 3.2 - 3.5 - 3.6 - 3.7 - 3.12
 .OUTPUTS
 [Pscustomobject] : An object containing the value, the name and the compliance of the control point
 .NOTES
@@ -20,6 +20,7 @@ function Get-ResourceProperties {
     $ControlResult = [PSCustomObject]@{
     }
     foreach ($ResourceByType in $AllResourceByType) {
+        #Check for subpropertie existence like "NetworkAcl.bypass"
         $splitPropertie = $PropertieToCheck.Split(".")
         if ($null -ne $splitPropertie[1]) {
             $CurrentValue = $ResourceByType.Properties.($splitPropertie[0]).($splitPropertie[1])
@@ -34,6 +35,7 @@ function Get-ResourceProperties {
             CurrentValue     = $CurrentValue
             Compliance       = "Compliant"
         }
+        #Check for the compliance
         if ($CurrentValue -notmatch $CompliantValue) {
             $Resource.Compliance = "Uncompliant"
         }

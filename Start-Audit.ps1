@@ -99,7 +99,7 @@ foreach ($Subscription in $AllSubscriptions) {
         for ($i = 0; $i -lt $PropertiesToCheck.Count; $i++) {
             $ControlName = "$($CISPoint[$i]) Ensure that [$($PropertiesToCheck[$i])] is set to [$($CompliantValues[$i])]"
             $StorageAccountProperties = Get-ResourceProperties -ResourceType "Microsoft.Storage/storageAccounts" -PropertieToCheck $($PropertiesToCheck[$i]) -CompliantValue $($CompliantValues[$i])
-            $AuditOutput.$SubscriptionName.$ControlPoint | Add-Member -MemberType NoteProperty -Name $ControlName -Value $StorageAccountProperties -Force
+            $AuditOutput.$SubscriptionName.$ControlPoint | Add-Member -MemberType NoteProperty -Name $ControlName -Value $StorageAccountProperties 
             Write-Host "$ControlName" -ForegroundColor Blue
             foreach ($StorageAccount in $AuditOutput.$SubscriptionName.$ControlPoint.$ControlName.Psobject.Properties) {
                 Write-Output "Storage Account : $($StorageAccount.Name) is : $($StorageAccount.Value.Compliance)"

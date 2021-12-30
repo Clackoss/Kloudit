@@ -22,7 +22,7 @@ function Format-HtmlTable {
         $ElementToAdd += "<h1>Subscription : " + $Subscription + "</h1>`n"
 
         foreach ($SubjectToControl in ($AllData.$Subscription | Get-Member -memberType NoteProperty).Name) {
-            $ElementToAdd += "<h2>" + $SubjectToControl + "</h2>`n"
+            $ElementToAdd += "<h2>" + $SubjectToControl + "</h2><br>`n"
             
             foreach ($ControlPoint in ($AllData.$Subscription.$SubjectToControl | Get-Member -memberType NoteProperty).Name) {
                 $split = $ControlPoint.Split(".",2)
@@ -30,7 +30,7 @@ function Format-HtmlTable {
                     $split[1] = $split[1].Replace("0","")
                 }
                 $PrintedControlPoint = $split[0] + "." + $split[1]
-                $ElementToAdd += "<h3>" + $PrintedControlPoint + "</h3>`n"
+                $ElementToAdd += "<br><h3>" + $PrintedControlPoint + "</h3><br>`n"
                 $ElementToAdd += "<table>`n<colgroup><col/><col/><col/><col/><col/></colgroup>`n"
                 $ElementToAdd += "<tr><th>ResourceName</th><th>PropertieChecked</th><th>CompliantValue</th><th>CurrentValue</th><th>Compliance</th></tr>`n"
 
