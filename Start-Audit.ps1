@@ -14,9 +14,9 @@ Write-Output "Modules successfully imported"
 Login
 
 #Define the Audit output for json format
-$AuditOutput = [PSCustomObject]@{}
+#$AuditOutput = [PSCustomObject]@{}
 #Define the Audit output
-$ControlPointsPerSub = [PSCustomObject]@{
+$AuditOutput = [PSCustomObject]@{
     IAM                = [PSCustomObject]@{}
     MsDefenderForCloud = [PSCustomObject]@{}
     StorageAccounts    = [PSCustomObject]@{}
@@ -37,7 +37,7 @@ foreach ($Subscription in $AllSubscriptions) {
     Set-AzContext -Subscription $SubscriptionId
 
     Write-Host "Check compliance for subscription [$SubscriptionName] : [$SubscriptionId]" -ForegroundColor DarkCyan
-    $AuditOutput | Add-Member -MemberType NoteProperty -Name $SubscriptionName -Value $ControlPointsPerSub
+    #$AuditOutput | Add-Member -MemberType NoteProperty -Name $SubscriptionName -Value $ControlPointsPerSub
     
     #Skip IAM section for the moment
 
@@ -51,7 +51,7 @@ foreach ($Subscription in $AllSubscriptions) {
         $cpt++
         $AzureDefenderPricing = Get-AzDefenderPricing -ResourceToCheck $ResourceToCheck
         $ControlName = "2.0$cpt Ensure that Azure Defender is set to On for $ResourceToCheck" 
-        $AuditOutput.$SubscriptionName.$ControlPoint | Add-Member -MemberType NoteProperty -Name $ControlName -Value $AzureDefenderPricing -Force
+        $AuditOutput.$ControlPoint | Add-Member -MemberType NoteProperty -Name $ControlName -Value $AzureDefenderPricing -Force
         Write-Output "$ControlName is : $($AzureDefenderPricing.Compliance)" 
     }
 
@@ -61,7 +61,7 @@ foreach ($Subscription in $AllSubscriptions) {
         $cpt++
         $AzureDefenderIntegration = Get-MsDefenderIntegration -IntegrationItem $ResourceToCheck
         $ControlName = "2.$cpt Ensure that Microsoft Defender for Endpoint ($ResourceToCheck) integraiton is selected" 
-        $AuditOutput.$SubscriptionName.$ControlPoint | Add-Member -MemberType NoteProperty -Name $ControlName -Value $AzureDefenderIntegration -Force
+        $AuditOutput.$ControlPoint | Add-Member -MemberType NoteProperty -Name $ControlName -Value $AzureDefenderIntegration -Force
         Write-Output "$ControlName is : $($AzureDefenderIntegration.Compliance)"
     }
 
@@ -69,19 +69,19 @@ foreach ($Subscription in $AllSubscriptions) {
     #2.11 Ensure That Auto provisioning of 'Log Analytics agent for Azure VMs is Set to On
     $ControlName = "2.11 Ensure That Auto provisioning of Log Analytics agent for Azure VMs is Set to On"
     $AutoProvisioning = Get-AutoProvisioning
-    $AuditOutput.$SubscriptionName.$ControlPoint | Add-Member -MemberType NoteProperty -Name $ControlName -Value $AutoProvisioning -Force
+    $AuditOutput.$ControlPoint | Add-Member -MemberType NoteProperty -Name $ControlName -Value $AutoProvisioning -Force
     Write-Output "$ControlName is : $($AutoProvisioning.Compliance)"
 
     #2.12 Ensure Any of the ASC Default Policy Setting is Not Set to 'Disabled'
     $ControlName = "2.12 Ensure Any of the ASC Default Policy Setting is Not Set to Disabled"
     $ASCPolicyState = Get-ASCPolicyState
-    $AuditOutput.$SubscriptionName.$ControlPoint | Add-Member -MemberType NoteProperty -Name $ControlName -Value $ASCPolicyState -Force
+    $AuditOutput.$ControlPoint | Add-Member -MemberType NoteProperty -Name $ControlName -Value $ASCPolicyState -Force
     Write-Output "$ControlName is : $($ASCPolicyState.Compliance)"
 
     #2.13 Ensure 'Additional email addresses' is Configured with a Security Contact Email
     $ControlName = "2.13 Ensure 'Additional email addresses' is Configured with a Security Contact Email"
     $SecurityEmail = Get-SecurityContact
-    $AuditOutput.$SubscriptionName.$ControlPoint | Add-Member -MemberType NoteProperty -Name $ControlName -Value $SecurityEmail -Force
+    $AuditOutput.$ControlPoint | Add-Member -MemberType NoteProperty -Name $ControlName -Value $SecurityEmail -Force
     Write-Output "$ControlName is : $($SecurityEmail.Compliance)"
 
     #2.14
@@ -99,9 +99,9 @@ foreach ($Subscription in $AllSubscriptions) {
         for ($i = 0; $i -lt $PropertiesToCheck.Count; $i++) {
             $ControlName = "$($CISPoint[$i]) Ensure that [$($PropertiesToCheck[$i])] is set to [$($CompliantValues[$i])]"
             $StorageAccountProperties = Get-ResourceProperties -ResourceType "Microsoft.Storage/storageAccounts" -PropertieToCheck $($PropertiesToCheck[$i]) -CompliantValue $($CompliantValues[$i])
-            $AuditOutput.$SubscriptionName.$ControlPoint | Add-Member -MemberType NoteProperty -Name $ControlName -Value $StorageAccountProperties 
+            $AuditOutput.$ControlPoint | Add-Member -MemberType NoteProperty -Name $ControlName -Value $StorageAccountProperties 
             Write-Host "$ControlName" -ForegroundColor Blue
-            foreach ($StorageAccount in $AuditOutput.$SubscriptionName.$ControlPoint.$ControlName.Psobject.Properties) {
+            foreach ($StorageAccount in $AuditOutput.$ControlPoint.$ControlName.Psobject.Properties) {
                 Write-Output "Storage Account : $($StorageAccount.Name) is : $($StorageAccount.Value.Compliance)"
             }
         }
@@ -113,9 +113,9 @@ foreach ($Subscription in $AllSubscriptions) {
         for ($i = 0; $i -lt $PropertiesToCheck.Count; $i++) {
             $ControlName = "$($CISPoint[$i]) Ensure Storage logging is enabled for [$($PropertiesToCheck[$i])]"
             $DiagSettingPropertie = Get-StorageClassicDiagSettings -PropertieToCheck $PropertiesToCheck[$i] -CompliantValue $CompliantValues[$i]
-            $AuditOutput.$SubscriptionName.$ControlPoint | Add-Member -MemberType NoteProperty -Name $ControlName -Value $DiagSettingPropertie -Force
+            $AuditOutput.$ControlPoint | Add-Member -MemberType NoteProperty -Name $ControlName -Value $DiagSettingPropertie -Force
             Write-Host "$ControlName" -ForegroundColor Blue
-            foreach ($StorageAccount in $AuditOutput.$SubscriptionName.$ControlPoint.$ControlName.Psobject.Properties) {
+            foreach ($StorageAccount in $AuditOutput.$ControlPoint.$ControlName.Psobject.Properties) {
                 Write-Output "Storage Account : $($StorageAccount.Name) is : $($StorageAccount.Value.Compliance)"
             }
         }
@@ -129,11 +129,10 @@ foreach ($Subscription in $AllSubscriptions) {
     
 }
 
-foreach ($Subscription in ($AuditOutput | Get-Member -MemberType NoteProperty).Name) {
-    foreach ($ControlPoint in ($AuditOutput.$Subscription | Get-Member -MemberType NoteProperty).Name) {
-        $AuditOutput.$Subscription.$ControlPoint = $AuditOutput.$Subscription.$ControlPoint | Sort-Object
-    }
+foreach ($ControlPoint in ($AuditOutput | Get-Member -MemberType NoteProperty).Name) {
+    $AuditOutput.$ControlPoint = $AuditOutput.$ControlPoint | Sort-Object
 }
+
 
 #Writing the Audit Output in the report section
 Write-Output "`nWriting the Audit output"
