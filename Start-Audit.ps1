@@ -106,6 +106,15 @@ foreach ($Subscription in $AllSubscriptions) {
             }
         }
 
+        #3.8
+        $ControlName = "3.08 Ensure that [Soft Delete] is set to [True]"
+        $StorageAccountProperties = Get-ResourceProperties -ResourceType "Microsoft.Storage/storageAccounts" -PropertieToCheck "DeleteRetentionPolicy.Enabled" -CompliantValue "True"
+        $AuditOutput.$ControlPoint | Add-Member -MemberType NoteProperty -Name $ControlName -Value $StorageAccountProperties 
+        Write-Host "$ControlName" -ForegroundColor Blue
+        foreach ($StorageAccount in $AuditOutput.$ControlPoint.$ControlName.Psobject.Properties) {
+            Write-Output "Storage Account : $($StorageAccount.Name) is : $($StorageAccount.Value.Compliance)"
+        }
+
         #3.3, 3.10, 3.11
         $CISPoint = @("3.03", "3.10", "3.11")
         $PropertiesToCheck = @("Queue", "Blob", "Table")
