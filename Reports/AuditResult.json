@@ -403,9 +403,68 @@
         "Compliance": "Uncompliant"
       }
     },
+    "3.08 Ensure that [Soft Delete] is set to [True]": {
+      "csb10032000a599ed7c": {
+        "ResourceName": "csb10032000a599ed7c",
+        "Subscription": "765266c6-9a23-4638-af32-dd1e32613047",
+        "PropertieChecked": "DeleteRetentionPolicy.Enabled",
+        "CompliantValue": "True",
+        "CurrentValue": null,
+        "Compliance": "Uncompliant"
+      },
+      "csb10033fff9a650085": {
+        "ResourceName": "csb10033fff9a650085",
+        "Subscription": "765266c6-9a23-4638-af32-dd1e32613047",
+        "PropertieChecked": "DeleteRetentionPolicy.Enabled",
+        "CompliantValue": "True",
+        "CurrentValue": null,
+        "Compliance": "Uncompliant"
+      },
+      "csb10037ffe9a5eb83f": {
+        "ResourceName": "csb10037ffe9a5eb83f",
+        "Subscription": "765266c6-9a23-4638-af32-dd1e32613047",
+        "PropertieChecked": "DeleteRetentionPolicy.Enabled",
+        "CompliantValue": "True",
+        "CurrentValue": null,
+        "Compliance": "Uncompliant"
+      },
+      "csb1003bffd99d8a22d": {
+        "ResourceName": "csb1003bffd99d8a22d",
+        "Subscription": "765266c6-9a23-4638-af32-dd1e32613047",
+        "PropertieChecked": "DeleteRetentionPolicy.Enabled",
+        "CompliantValue": "True",
+        "CurrentValue": null,
+        "Compliance": "Uncompliant"
+      },
+      "csb1003bffdad90ad47": {
+        "ResourceName": "csb1003bffdad90ad47",
+        "Subscription": "765266c6-9a23-4638-af32-dd1e32613047",
+        "PropertieChecked": "DeleteRetentionPolicy.Enabled",
+        "CompliantValue": "True",
+        "CurrentValue": null,
+        "Compliance": "Uncompliant"
+      },
+      "csb1003bffdad90af8f": {
+        "ResourceName": "csb1003bffdad90af8f",
+        "Subscription": "765266c6-9a23-4638-af32-dd1e32613047",
+        "PropertieChecked": "DeleteRetentionPolicy.Enabled",
+        "CompliantValue": "True",
+        "CurrentValue": null,
+        "Compliance": "Uncompliant"
+      },
+      "storagetestefrei": {
+        "ResourceName": "storagetestefrei",
+        "Subscription": "765266c6-9a23-4638-af32-dd1e32613047",
+        "PropertieChecked": "DeleteRetentionPolicy.Enabled",
+        "CompliantValue": "True",
+        "CurrentValue": null,
+        "Compliance": "Uncompliant"
+      }
+    },
     "3.03 Ensure Storage logging is enabled for [Queue]": {
       "csb10032000a599ed7c": {
         "ResourceName": "csb10032000a599ed7c",
+        "Subscription": "765266c6-9a23-4638-af32-dd1e32613047",
         "PropertieChecked": "Queue LoggingOperations",
         "CompliantValue": "All",
         "CurrentValue": 0,
@@ -413,6 +472,7 @@
       },
       "csb10033fff9a650085": {
         "ResourceName": "csb10033fff9a650085",
+        "Subscription": "765266c6-9a23-4638-af32-dd1e32613047",
         "PropertieChecked": "Queue LoggingOperations",
         "CompliantValue": "All",
         "CurrentValue": 0,
@@ -420,6 +480,7 @@
       },
       "csb10037ffe9a5eb83f": {
         "ResourceName": "csb10037ffe9a5eb83f",
+        "Subscription": "765266c6-9a23-4638-af32-dd1e32613047",
         "PropertieChecked": "Queue LoggingOperations",
         "CompliantValue": "All",
         "CurrentValue": 0,
@@ -427,6 +488,7 @@
       },
       "csb1003bffd99d8a22d": {
         "ResourceName": "csb1003bffd99d8a22d",
+        "Subscription": "765266c6-9a23-4638-af32-dd1e32613047",
         "PropertieChecked": "Queue LoggingOperations",
         "CompliantValue": "All",
         "CurrentValue": 0,
@@ -434,6 +496,7 @@
       },
       "csb1003bffdad90ad47": {
         "ResourceName": "csb1003bffdad90ad47",
+        "Subscription": "765266c6-9a23-4638-af32-dd1e32613047",
         "PropertieChecked": "Queue LoggingOperations",
         "CompliantValue": "All",
         "CurrentValue": 0,
@@ -441,6 +504,7 @@
       },
       "csb1003bffdad90af8f": {
         "ResourceName": "csb1003bffdad90af8f",
+        "Subscription": "765266c6-9a23-4638-af32-dd1e32613047",
         "PropertieChecked": "Queue LoggingOperations",
         "CompliantValue": "All",
         "CurrentValue": 0,
@@ -448,6 +512,7 @@
       },
       "storagetestefrei": {
         "ResourceName": "storagetestefrei",
+        "Subscription": "765266c6-9a23-4638-af32-dd1e32613047",
         "PropertieChecked": "Queue LoggingOperations",
         "CompliantValue": "All",
         "CurrentValue": 7,
@@ -457,6 +522,7 @@
     "3.10 Ensure Storage logging is enabled for [Blob]": {
       "csb10032000a599ed7c": {
         "ResourceName": "csb10032000a599ed7c",
+        "Subscription": "765266c6-9a23-4638-af32-dd1e32613047",
         "PropertieChecked": "Blob LoggingOperations",
         "CompliantValue": "All",
         "CurrentValue": 0,
@@ -464,6 +530,7 @@
       },
       "csb10033fff9a650085": {
         "ResourceName": "csb10033fff9a650085",
+        "Subscription": "765266c6-9a23-4638-af32-dd1e32613047",
         "PropertieChecked": "Blob LoggingOperations",
         "CompliantValue": "All",
         "CurrentValue": 0,
@@ -471,6 +538,7 @@
       },
       "csb10037ffe9a5eb83f": {
         "ResourceName": "csb10037ffe9a5eb83f",
+        "Subscription": "765266c6-9a23-4638-af32-dd1e32613047",
         "PropertieChecked": "Blob LoggingOperations",
         "CompliantValue": "All",
         "CurrentValue": 0,
@@ -478,6 +546,7 @@
       },
       "csb1003bffd99d8a22d": {
         "ResourceName": "csb1003bffd99d8a22d",
+        "Subscription": "765266c6-9a23-4638-af32-dd1e32613047",
         "PropertieChecked": "Blob LoggingOperations",
         "CompliantValue": "All",
         "CurrentValue": 0,
@@ -485,6 +554,7 @@
       },
       "csb1003bffdad90ad47": {
         "ResourceName": "csb1003bffdad90ad47",
+        "Subscription": "765266c6-9a23-4638-af32-dd1e32613047",
         "PropertieChecked": "Blob LoggingOperations",
         "CompliantValue": "All",
         "CurrentValue": 0,
@@ -492,6 +562,7 @@
       },
       "csb1003bffdad90af8f": {
         "ResourceName": "csb1003bffdad90af8f",
+        "Subscription": "765266c6-9a23-4638-af32-dd1e32613047",
         "PropertieChecked": "Blob LoggingOperations",
         "CompliantValue": "All",
         "CurrentValue": 0,
@@ -499,6 +570,7 @@
       },
       "storagetestefrei": {
         "ResourceName": "storagetestefrei",
+        "Subscription": "765266c6-9a23-4638-af32-dd1e32613047",
         "PropertieChecked": "Blob LoggingOperations",
         "CompliantValue": "All",
         "CurrentValue": 0,
@@ -508,6 +580,7 @@
     "3.11 Ensure Storage logging is enabled for [Table]": {
       "csb10032000a599ed7c": {
         "ResourceName": "csb10032000a599ed7c",
+        "Subscription": "765266c6-9a23-4638-af32-dd1e32613047",
         "PropertieChecked": "Table LoggingOperations",
         "CompliantValue": "All",
         "CurrentValue": 0,
@@ -515,6 +588,7 @@
       },
       "csb10033fff9a650085": {
         "ResourceName": "csb10033fff9a650085",
+        "Subscription": "765266c6-9a23-4638-af32-dd1e32613047",
         "PropertieChecked": "Table LoggingOperations",
         "CompliantValue": "All",
         "CurrentValue": 0,
@@ -522,6 +596,7 @@
       },
       "csb10037ffe9a5eb83f": {
         "ResourceName": "csb10037ffe9a5eb83f",
+        "Subscription": "765266c6-9a23-4638-af32-dd1e32613047",
         "PropertieChecked": "Table LoggingOperations",
         "CompliantValue": "All",
         "CurrentValue": 0,
@@ -529,6 +604,7 @@
       },
       "csb1003bffd99d8a22d": {
         "ResourceName": "csb1003bffd99d8a22d",
+        "Subscription": "765266c6-9a23-4638-af32-dd1e32613047",
         "PropertieChecked": "Table LoggingOperations",
         "CompliantValue": "All",
         "CurrentValue": 0,
@@ -536,6 +612,7 @@
       },
       "csb1003bffdad90ad47": {
         "ResourceName": "csb1003bffdad90ad47",
+        "Subscription": "765266c6-9a23-4638-af32-dd1e32613047",
         "PropertieChecked": "Table LoggingOperations",
         "CompliantValue": "All",
         "CurrentValue": 0,
@@ -543,6 +620,7 @@
       },
       "csb1003bffdad90af8f": {
         "ResourceName": "csb1003bffdad90af8f",
+        "Subscription": "765266c6-9a23-4638-af32-dd1e32613047",
         "PropertieChecked": "Table LoggingOperations",
         "CompliantValue": "All",
         "CurrentValue": 0,
@@ -550,6 +628,7 @@
       },
       "storagetestefrei": {
         "ResourceName": "storagetestefrei",
+        "Subscription": "765266c6-9a23-4638-af32-dd1e32613047",
         "PropertieChecked": "Table LoggingOperations",
         "CompliantValue": "All",
         "CurrentValue": 0,

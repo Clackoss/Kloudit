@@ -13,6 +13,17 @@ function Login {
     Write-Output "`n"
 }
 
+<#
+.SYNOPSIS
+Format a powershell custom object to an html format table
+.DESCRIPTION
+Format a powershell custom object to an html format table
+.OUTPUTS
+An html file with the html table in
+.NOTES
+Author : Maxime BOUDIER
+Version : 1.0.0
+#>
 function Format-HtmlTable {
     $HtmlPage = Get-content -path ./Web/initializer.html
     $AllData = Get-content -path ./Reports/AuditResult.json | Convertfrom-json

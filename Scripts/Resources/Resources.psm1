@@ -25,14 +25,13 @@ function Get-ResourceProperties {
     $ControlResult = [PSCustomObject]@{
     }
     foreach ($ResourceByType in $AllResourceByType) {
-        if ($Subfunction) {
-            $CurrentValue = Invoke-Expression $SubFunction
-        }
-        else {
-            #Check for subpropertie existence like "NetworkAcl.bypass"
-            $CurrentValue = Check-SubPropertie -PropertieToCheck $PropertieToCheck -ResourceByType $ResourceByType
 
-        }
+
+        #TODO Check for subfunction
+        #Check for subpropertie existence like "NetworkAcl.bypass"
+        $CurrentValue = Check-SubPropertie -PropertieToCheck $PropertieToCheck -ResourceByType $ResourceByType
+
+
         $Resource = [PSCustomObject]@{
             ResourceName     = $ResourceByType.Name
             Subscription     = $ResourceByType.SubscriptionId
@@ -68,11 +67,11 @@ function Check-SubPropertie {
         [Parameter(Mandatory = $true)][Object]$ResourceByType
     )
     $splitPropertie = $PropertieToCheck.Split(".")
-    if ($null -ne $splitPropertie[1]) {
-        $CurrentValue = $ResourceByType.Properties.($splitPropertie[0]).($splitPropertie[1])
-    }
-    else {
-        $CurrentValue = $ResourceByType.Properties.$PropertieToCheck
-    }
+        if ($null -ne $splitPropertie[1]) {
+            $CurrentValue = $ResourceByType.Properties.($splitPropertie[0]).($splitPropertie[1])
+        }
+        else {
+            $CurrentValue = $ResourceByType.Properties.$PropertieToCheck
+        }
     return $CurrentValue
 }
