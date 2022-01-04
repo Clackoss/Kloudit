@@ -25,17 +25,18 @@ Author : Maxime BOUDIER
 Version : 1.0.0
 #>
 function Format-HtmlTable {
-    $HtmlPage = Get-content -path ./Web/initializer.html
-    $AllData = Get-content -path ./Reports/AuditResult.json | Convertfrom-json
+    param (
+        [Parameter(Mandatory = $true)][string]$AuditSectionToPrint
+    )
+    $HtmlPage = Get-content -path "./Web/initializer.html"
+    $AllData = Get-content -path "./Reports/$AuditSectionToPrint.json" | Convertfrom-json
     $ElementToAdd = ""
-
-    #foreach ($Subscription in ($AllData | Get-Member -memberType NoteProperty).Name) {
-        #$ElementToAdd += "<h1>Subscription : " + $Subscription + "</h1>`n"
 
         foreach ($SubjectToControl in ($AllData | Get-Member -memberType NoteProperty).Name) {
             $ElementToAdd += "<h2>" + $SubjectToControl + "</h2><br>`n"
             
             foreach ($ControlPoint in ($AllData.$SubjectToControl | Get-Member -memberType NoteProperty).Name) {
+                #Remove the 0 before control point number like "2.03"
                 $split = $ControlPoint.Split(".",2)
                 if ($split[1] -match "^0") {
                     $split[1] = $split[1].Replace("0","")
@@ -53,7 +54,6 @@ function Format-HtmlTable {
             }
 
         }
-    #}
     $HtmlPage = $HtmlPage -replace "DATAHERE", $ElementToAdd
     $HtmlPage | Set-Content -Path "./Web/index.html" -Force
 }

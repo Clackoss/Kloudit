@@ -13,41 +13,27 @@ Write-Output "Modules successfully imported"
 #Login to azure
 Login
 
-#Define the Audit output for json format
-#$AuditOutput = [PSCustomObject]@{}
+
 #Define the Audit output
-$AuditOutput = [PSCustomObject]@{
-    IAM                = [PSCustomObject]@{}
-    MsDefenderForCloud = [PSCustomObject]@{}
-    StorageAccounts    = [PSCustomObject]@{}
-    Database           = [PSCustomObject]@{}
-    LoggingMonitoring  = [PSCustomObject]@{}
-    Network            = [PSCustomObject]@{}
-    VirtualMachines    = [PSCustomObject]@{}
-    Other              = [PSCustomObject]@{}
-    AppService         = [PSCustomObject]@{}
-}
+$AuditOutput = [PSCustomObject]@{}
 
 #Get all Azure subscriptions
-$AllSubscriptions = Get-azSubscription
+$SubscriptionList = Get-azSubscription
 
-foreach ($Subscription in $AllSubscriptions) {
-    $SubscriptionName = $Subscription.Name
-    $SubscriptionId = $Subscription.Id
-    Set-AzContext -Subscription $SubscriptionId
+#Skip IAM section for the moment
 
-    Write-Host "Check compliance for subscription [$SubscriptionName] : [$SubscriptionId]" -ForegroundColor DarkCyan
-
-    #Skip IAM section for the moment
-
-    ##Audit the Ms Defender For cloud section##
-    $AuditOutput.MsDefenderForCloud = Start-AuditMsDefenderForCloud
-
-    ##Audit the Storage Accounts section##
-    $AuditOutput.StorageAccounts = Start-AuditStorageAccount
+##Audit the Ms Defender For cloud section##
     
-    Write-Host "`nAudit completed on subscription : [$($Subscription.Name)] : [$Subscription]`n" -ForegroundColor DarkGreen 
-}
+$MsDefenderForCloudResult = Start-AuditMsDefenderForCloud -SubscriptionList $SubscriptionList
+$AuditOutput | Add-Member -MemberType NoteProperty -Name "MIcrosoft Defender For Cloud" -Value $MsDefenderForCloudResult
+
+##Audit the Storage Accounts section##
+$StorageAccountResult = Start-AuditStorageAccount -SubscriptionList $SubscriptionList
+$AuditOutput | Add-Member -MemberType NoteProperty -Name "Storage Accounts" -Value $StorageAccountResult
+
+##Audit de Database Section##
+    
+
 
 foreach ($AuditSection in ($AuditOutput | Get-Member -MemberType NoteProperty).Name) {
     $AuditOutput.$AuditSection = $AuditOutput.$AuditSection | Sort-Object
@@ -61,6 +47,6 @@ foreach ($AuditSection in ($AuditOutput | Get-Member -MemberType NoteProperty).N
 }
 
 #Generate the Html output
-Format-HtmlTable
+Format-HtmlTable -AuditSectionToPrint "AuditResult"
 $CurrentPath = (Get-Location).Path
-Write-Host "`nAudit completed Successfully`nYou can consult the Audit result on a web page at $CurrentPath/Web/index.html" -ForegroundColor Green
+Write-Host "`nAudit completed Successfully`nYou can consult the Audit result on a web page at $CurrentPath\Web\index.html" -ForegroundColor Green
