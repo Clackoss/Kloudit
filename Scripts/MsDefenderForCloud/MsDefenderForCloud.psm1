@@ -22,7 +22,7 @@ function Start-AuditMsDefenderForCloud {
     foreach ($Subscription in $SubscriptionList) {
         $SubscriptionName = $Subscription.Name
         $SubscriptionId = $Subscription.Id
-        Set-AzContext -Subscription $SubscriptionId
+        Set-AzContext -Subscription $SubscriptionId | Out-null
 
         Write-Host "`nCheck compliance for MsDefenderForCloud on subscription [$SubscriptionName] : [$SubscriptionId]" -ForegroundColor Cyan
         

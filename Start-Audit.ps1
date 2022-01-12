@@ -22,18 +22,19 @@ $SubscriptionList = Get-azSubscription
 
 #Skip IAM section for the moment
 
+
 ##Audit the Ms Defender For cloud section##
     
 $MsDefenderForCloudResult = Start-AuditMsDefenderForCloud -SubscriptionList $SubscriptionList
-$AuditOutput | Add-Member -MemberType NoteProperty -Name "MIcrosoft Defender For Cloud" -Value $MsDefenderForCloudResult
+$AuditOutput | Add-Member -MemberType NoteProperty -Name "Microsoft Defender For Cloud" -Value $MsDefenderForCloudResult
 
 ##Audit the Storage Accounts section##
 $StorageAccountResult = Start-AuditStorageAccount -SubscriptionList $SubscriptionList
 $AuditOutput | Add-Member -MemberType NoteProperty -Name "Storage Accounts" -Value $StorageAccountResult
 
 ##Audit de Database Section##
-    
-
+$DataBaseResult = Start-AuditDataBase -SubscriptionList $SubscriptionList
+$AuditOutput | Add-Member -MemberType NoteProperty -Name "Data Bases" -Value $DataBaseResult
 
 foreach ($AuditSection in ($AuditOutput | Get-Member -MemberType NoteProperty).Name) {
     $AuditOutput.$AuditSection = $AuditOutput.$AuditSection | Sort-Object

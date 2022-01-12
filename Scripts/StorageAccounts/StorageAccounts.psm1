@@ -16,14 +16,13 @@ function Start-AuditStorageAccount {
         [Parameter(Mandatory = $true)][Object]$SubscriptionList
     )
 
-
     $StorageAccounts = [PSCustomObject]@{}
-    Write-Host "`n**Checking Storage Accounts configurations on subscription**`n" -ForegroundColor DarkMagenta
+    Write-Host "`n**Checking Storage Accounts configurations**`n" -ForegroundColor DarkMagenta
 
     foreach ($Subscription in $SubscriptionList) {
         $SubscriptionName = $Subscription.Name
         $SubscriptionId = $Subscription.Id
-        Set-AzContext -Subscription $Subscription.Id
+        Set-AzContext -Subscription $Subscription.Id | Out-null
 
         if ((Get-AzResource -ResourceType "Microsoft.Storage/storageAccounts").count -gt 0) {
 
@@ -31,41 +30,29 @@ function Start-AuditStorageAccount {
 
             #CIS : 3.1 - 3.2 - 3.5 - 3.6 - 3.7 - 3.12
             $CISPoint = @("3.01", "3.02", "3.05", "3.06", "3.07", "3.12")
-            $PropertiesToCheck = @("supportsHttpsTrafficOnly", "KeyPolicy.keyExpirationPeriodInDays", "allowBlobPublicAccess", "networkAcls.defaultAction", "networkAcls.bypass", "minimumTlsVersion")
+            $PropertiesToCheck = @("supportsHttpsTrafficOnly", "KeyPolicy.keyExpirationPeriodInDays", "allowBlobPublicAccess", "networkAcls.defaultAction", "networkAcls.bypass","minimumTlsVersion")
             $CompliantValues = @("True", "[0-365]", "False", "Deny", "AzureServices", "TLS1_2")
-            #For all CIS Point to control
-            for ($i = 0; $i -lt $PropertiesToCheck.Count; $i++) {
-                $ControlName = "$($CISPoint[$i]) Ensure that [$($PropertiesToCheck[$i])] is set to [$($CompliantValues[$i])]"
-                $StorageAccountProperties = Get-ResourceProperties -ResourceType "Microsoft.Storage/storageAccounts" -PropertieToCheck $($PropertiesToCheck[$i]) -CompliantValue $($CompliantValues[$i])
-                $StorageAccounts | Add-Member -MemberType NoteProperty -Name $ControlName -Value $StorageAccountProperties 
-                Write-Host "$ControlName" -ForegroundColor Blue
-                foreach ($StorageAccount in $StorageAccounts.$ControlName.Psobject.Properties) {
-                    Write-Host "Storage Account : $($StorageAccount.Name) is : $($StorageAccount.Value.Compliance)"
-                }
-            }
-
-            #CIS : 3.8
-            $ControlName = "3.08 Ensure that [Soft Delete] is set to [True]"
-            $StorageAccountProperties = Get-ResourceProperties -ResourceType "Microsoft.Storage/storageAccounts" -PropertieToCheck "DeleteRetentionPolicy.Enabled" -CompliantValue "True"
+            $StorageAccounts = Add-CisControlSetp -DataObject $StorageAccounts -CISPoint $CISPoint -PropertiesToCheck $PropertiesToCheck -CompliantValues $CompliantValues -ResourceType "Storage Accounts" -controlName "Ensure that [Propertie] is set to [Compliant]" -FunctionToCall "Get-ResourceProperties -ResourceType 'Microsoft.Storage/storageAccounts'"
+ 
+             #CIS : 3.8
+            <# $ControlName = "3.08 Ensure that [Soft Delete] is set to [True]"
+            $StorageAccountProperties = Get-StorageSoftDelete -PropertieToCheck "DeleteRetentionPolicy.Enabled" -CompliantValue "True"
             $StorageAccounts | Add-Member -MemberType NoteProperty -Name $ControlName -Value $StorageAccountProperties 
             Write-Host "$ControlName" -ForegroundColor Blue
             foreach ($StorageAccount in $StorageAccounts.$ControlName.Psobject.Properties) {
                 Write-Host "Storage Account : $($StorageAccount.Name) is : $($StorageAccount.Value.Compliance)"
-            }
+            } 
+          $CISPoint = @("3.08")
+            $PropertiesToCheck = @("DeleteRetentionPolicy.Enabled")
+            $CompliantValues = @("True")
+            $StorageAccounts = Add-CisControlSetp -DataObject $StorageAccounts -CISPoint $CISPoint -PropertiesToCheck $PropertiesToCheck -CompliantValues $CompliantValues -ResourceType "Storage Accounts" -FunctionToCall "Get-StorageSoftDelete"
+ #>
 
             #CIS : 3.3, 3.10, 3.11
             $CISPoint = @("3.03", "3.10", "3.11")
             $PropertiesToCheck = @("Queue", "Blob", "Table")
             $CompliantValues = @("All", "All", "All")
-            for ($i = 0; $i -lt $PropertiesToCheck.Count; $i++) {
-                $ControlName = "$($CISPoint[$i]) Ensure Storage logging is enabled for [$($PropertiesToCheck[$i])]"
-                $DiagSettingPropertie = Get-StorageClassicDiagSettings -PropertieToCheck $PropertiesToCheck[$i] -CompliantValue $CompliantValues[$i]
-                $StorageAccounts | Add-Member -MemberType NoteProperty -Name $ControlName -Value $DiagSettingPropertie -Force
-                Write-Host "$ControlName" -ForegroundColor Blue
-                foreach ($StorageAccount in $StorageAccounts.$ControlName.Psobject.Properties) {
-                    Write-Host "Storage Account : $($StorageAccount.Name) is : $($StorageAccount.Value.Compliance)"
-                }
-            }
+            $StorageAccounts = Add-CisControlSetp -DataObject $StorageAccounts -CISPoint $CISPoint -PropertiesToCheck $PropertiesToCheck -CompliantValues $CompliantValues -ResourceType "Storage Accounts" -ControlName "Ensure Storage logging is enabled for [Propertie]" -FunctionToCall "Get-StorageClassicDiagSettings"
         }
         else {
             Write-Host "No storage account in the subscription : $SubscriptionName"
