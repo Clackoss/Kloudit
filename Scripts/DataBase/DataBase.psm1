@@ -27,7 +27,7 @@ function Start-AuditDataBase {
 
         Write-Host "Check compliance for [DataBases : SQL Server] on subscription [$SubscriptionName] : [$SubscriptionId]" -ForegroundColor Cyan
         if ($AllSqlServer.count -gt 0) {
-        
+        ##4.1.1 & 4.1.3
         
             if ($AllSqlDb.Count -gt 0) {
                 #CIS : 4.1.2
@@ -35,9 +35,7 @@ function Start-AuditDataBase {
                 $PropertiesToCheck = @("DataEncryption")
                 $CompliantValues = @("Enabled")
                 $ControlName = "Ensure [Propertie] is enabled on SQL DataBases"
-                #TO FIXXXX
-                #$DataBase = Add-CisControlSetp -DataObject $DataBase -CISPoint $CISPoint -PropertiesToCheck $PropertiesToCheck -CompliantValues $CompliantValues -ResourceType "SQL DataBases" -ControlName $ControlName -FunctionToCall "Get-SqlDbTransparentDataEncryption -Subscription $Subscription -AllSqlDb $AllSqlDB"
-            }
+                $DataBase = Add-CisControlSetp -DataObject $DataBase -CISPoint $CISPoint -PropertiesToCheck $PropertiesToCheck -CompliantValues $CompliantValues -ResourceType "SQL DataBases" -ControlName $ControlName -FunctionToCall "Get-SqlDbTransparentDataEncryption"            }
             else {
                 Write-Host "No Sql Database"
             }
@@ -47,6 +45,7 @@ function Start-AuditDataBase {
         }
         
     }
+    return $DataBase
 }
 
 <#
@@ -65,8 +64,7 @@ function Get-SqlServerAuditConf {
     param(
         [Parameter(Mandatory = $true)][string]$PropertieToCheck,
         [Parameter(Mandatory = $true)][string]$CompliantValue,
-        [Parameter(Mandatory = $true)][Object]$AllSqlServer,
-        [Parameter(Mandatory = $true)][Object]$Subscription
+        [Parameter(Mandatory = $true)][Object]$AllSqlServer
     )
     $ControlResult = [PSCustomObject]@{}
     #Get all the storage accounts in the resource groups
@@ -75,11 +73,11 @@ function Get-SqlServerAuditConf {
         $SqlServerAuditConf = Get-AzSqlServerAudit -ResourceGroupName $SqlServer.ResourceGroupName -ServerName $SqlServer.Name
         $Resource = [PSCustomObject]@{
             ResourceName     = $SqlServer.Name
-            Subscription     = $Subscription.Id
+            Subscription     = ($SqlServer.id -split ("/"))[2]
             PropertieChecked = $PropertieToCheck
             CompliantValue   = $CompliantValue
             CurrentValue     = $SqlServerAuditConf.$PropertieToCheck
-            Compliance       = (Check-Compliance -CurrentValue $SqlServerAuditConf.$PropertieToCheck -CompliantValue $CompliantValue)
+            Compliance       = (Get-Compliance -CurrentValue $SqlServerAuditConf.$PropertieToCheck -CompliantValue $CompliantValue)
         }
         $ControlResult | Add-Member -MemberType NoteProperty -Name $Resource.ResourceName -Value $Resource
     }
@@ -100,25 +98,23 @@ Version : 1.0.0
 function Get-SqlDbTransparentDataEncryption {
     param(
         [Parameter(Mandatory = $true)][string]$PropertieToCheck,
-        [Parameter(Mandatory = $true)][string]$CompliantValue,
-        [Parameter(Mandatory = $true)][Object]$AllSqlDb,
-        [Parameter(Mandatory = $true)][Object]$Subscription
+        [Parameter(Mandatory = $true)][string]$CompliantValue
     )
     $ControlResult = [PSCustomObject]@{}
     #Get all the storage accounts in the resource groups
-
+    $AllSqlDb = Get-AzResource -ResourceType "Microsoft.Sql/servers/databases" -ExpandProperties
     foreach ($SqlDb in $AllSqlDb) {
         $SqlDbRG = $SqlDb.ResourceGroupName
         $SqlDbName = $SqlDb.Name
         $SqlDbServerName = ($SqlDb.ResourceId -split ("/"))[8]
-        $SqldbDataEncryption = (Get-AzSqlDatabaseTransparentDataEncryption -ResourceGroupName $SqlDbRG -ServerName $SqlDbServerName -DatabaseName $SqlDbName).State
+        $SqldbDataEncryption = [String](Get-AzSqlDatabaseTransparentDataEncryption -ResourceGroupName $SqlDbRG -ServerName $SqlDbServerName -DatabaseName $SqlDbName).State
         $Resource = [PSCustomObject]@{
             ResourceName     = $SqlDbName
             Subscription     = $Subscription.Id
             PropertieChecked = $PropertieToCheck
             CompliantValue   = $CompliantValue
             CurrentValue     = $SqldbDataEncryption
-            Compliance       = (Check-Compliance -CurrentValue $SqldbDataEncryption -CompliantValue $CompliantValue)
+            Compliance       = (Get-Compliance -CurrentValue $SqldbDataEncryption -CompliantValue $CompliantValue)
         }
         $ControlResult | Add-Member -MemberType NoteProperty -Name $Resource.ResourceName -Value $Resource
     }

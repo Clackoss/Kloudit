@@ -25,13 +25,8 @@ function Get-ResourceProperties {
     $ControlResult = [PSCustomObject]@{
     }
     foreach ($ResourceByType in $AllResourceByType) {
-
-
-        #TODO Check for subfunction
         #Check for subpropertie existence like "NetworkAcl.bypass"
         $CurrentValue = Check-SubPropertie -PropertieToCheck $PropertieToCheck -ResourceByType $ResourceByType
-
-
         $Resource = [PSCustomObject]@{
             ResourceName     = $ResourceByType.Name
             Subscription     = $ResourceByType.SubscriptionId
@@ -40,7 +35,7 @@ function Get-ResourceProperties {
             CurrentValue     = $CurrentValue
             Compliance       = "Compliant"
         }
-        #Check for the compliance
+        #Check the compliance
         if ($CurrentValue -notmatch $CompliantValue) {
             $Resource.Compliance = "Uncompliant"
         }

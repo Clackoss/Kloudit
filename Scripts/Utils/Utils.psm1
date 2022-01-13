@@ -115,7 +115,7 @@ Check if a resource config is compliant with the CIS recomandations
 Author : Maxime BOUDIER
 Version : 1.0.0
 #>
-function Check-Compliance {
+function Get-Compliance {
     param (
         [Parameter(Mandatory = $true)][string]$CurrentValue,
         [Parameter(Mandatory = $true)][string]$CompliantValue
@@ -148,10 +148,9 @@ function Add-CisControlSetp {
         [Parameter(Mandatory = $true)][string]$ControlName    
     )
     for ($i = 0; $i -lt $CISPoint.Count; $i++) {
-        $ControlName = $ControlName.Replace("Propertie", $PropertiesToCheck[$i])
-        $ControlName = $ControlName.Replace("Compliant", $CompliantValues[$i])
-        $ControlNameToPrint = $($CISPoint[$i]) + " " + $ControlName
-        #$ControlName = "$($CISPoint[$i]) Ensure that [$($PropertiesToCheck[$i])] is set to [$($CompliantValues[$i])]"
+        $ControlNameReplaced = $ControlName.Replace("Propertie", $($PropertiesToCheck[$i]))
+        $ControlNameReplaced = $ControlNameReplaced.Replace("Compliant", $($CompliantValues[$i]))
+        $ControlNameToPrint = $($CISPoint[$i]) + " " + $ControlNameReplaced
         $FunctionToCallWithParam = $FunctionToCall + " -PropertieToCheck $($PropertiesToCheck[$i]) -CompliantValue $($CompliantValues[$i])"
         $ControlData = Invoke-Expression $FunctionToCallWithParam
         try {
