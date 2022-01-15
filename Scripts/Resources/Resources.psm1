@@ -26,7 +26,7 @@ function Get-ResourceProperties {
     }
     foreach ($ResourceByType in $AllResourceByType) {
         #Check for subpropertie existence like "NetworkAcl.bypass"
-        $CurrentValue = Check-SubPropertie -PropertieToCheck $PropertieToCheck -ResourceByType $ResourceByType
+        $CurrentValue = Get-SubPropertie -PropertieToCheck $PropertieToCheck -ResourceByType $ResourceByType
         $Resource = [PSCustomObject]@{
             ResourceName     = $ResourceByType.Name
             Subscription     = $ResourceByType.SubscriptionId
@@ -56,7 +56,7 @@ Check if the propertie that must be check is composed of mutiple properties (ex 
 Author : Maxime BOUDIER
 Version : 1.0.0
 #>
-function Check-SubPropertie {
+function Get-SubPropertie {
     param (
         [Parameter(Mandatory = $true)][string]$PropertieToCheck,
         [Parameter(Mandatory = $true)][Object]$ResourceByType

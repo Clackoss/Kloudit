@@ -168,3 +168,36 @@ function Add-CisControlSetp {
     }
     return $DataObject
 }
+
+
+
+<#
+.SYNOPSIS
+Set the object containing the result of the control for a unique resource
+.OUTPUTS
+[PsCustomObject] : The object containing the result of the control point for a resource
+.NOTES
+Author : Maxime BOUDIER
+Version : 1.0.0
+#>
+function Set-ControlResultObject {
+    param (
+        [Parameter(Mandatory = $true)][PscustomObject]$ControlResult,
+        [Parameter(Mandatory = $true)][string]$PropertieToCheck,
+        [Parameter(Mandatory = $true)][string]$CompliantValue,
+        [Parameter(Mandatory = $true)][string]$CurrentValue,
+        [Parameter(Mandatory = $true)][string]$ResourceName,
+        [Parameter(Mandatory = $true)][string]$Subscription
+    )
+    
+    $Resource = [PSCustomObject]@{
+        ResourceName     = $ResourceName
+        Subscription     = $Subscription
+        PropertieChecked = $PropertieToCheck
+        CompliantValue   = $CompliantValue
+        CurrentValue     = $CurrentValue
+        Compliance       = (Get-Compliance -CurrentValue $CurrentValue -CompliantValue $CompliantValue)
+    }
+    $ControlResult | Add-Member -MemberType NoteProperty -Name $Resource.ResourceName -Value $Resource
+    return $ControlResult 
+}
