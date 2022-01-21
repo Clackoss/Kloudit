@@ -34,7 +34,7 @@ function Start-AuditMsDefenderForCloud {
         $AllResourcesToCheck = @('VirtualMachines', 'AppServices', 'SqlServers', 'SqlServerVirtualMachines', 'StorageAccounts', 'KubernetesService', 'ContainerRegistry', 'KeyVaults')
         foreach ($ResourceToCheck in $AllResourcesToCheck) {
             $cpt++
-            $AzureDefenderPricing = Get-AzDefenderPricing -ResourceToCheck $ResourceToCheck -Subscription $Subscription
+            $AzureDefenderPricing = Get-AzDefenderPricing -ResourceToCheck $ResourceToCheck
             $ControlName = "2.0$cpt Ensure that Azure Defender is set to On for $ResourceToCheck" 
             $MsDefenderForCloud | Add-Member -MemberType NoteProperty -Name $ControlName -Value $AzureDefenderPricing -Force
             Write-Host "$ControlName is : $($MsDefenderForCloud.$ControlName.$SubscriptionId.Compliance)" 
@@ -47,7 +47,7 @@ function Start-AuditMsDefenderForCloud {
             $AzureDefenderIntegration = Get-MsDefenderIntegration -IntegrationItem $ResourceToCheck
             $ControlName = "2.$cpt Ensure that Microsoft Defender for Endpoint ($ResourceToCheck) integraiton is selected" 
             $MsDefenderForCloud | Add-Member -MemberType NoteProperty -Name $ControlName -Value $AzureDefenderIntegration -Force
-            Write-Host "$ControlName is : $($AzureDefenderIntegration.Compliance)"
+            Write-Host "$ControlName is : $($MsDefenderForCloud.$ControlName.$SubscriptionId.Compliance)" 
         }
 
 
@@ -55,36 +55,25 @@ function Start-AuditMsDefenderForCloud {
         $ControlName = "2.11 Ensure That Auto provisioning of Log Analytics agent for Azure VMs is Set to On"
         $AutoProvisioning = Get-AutoProvisioning
         $MsDefenderForCloud | Add-Member -MemberType NoteProperty -Name $ControlName -Value $AutoProvisioning -Force
-        Write-Host "$ControlName is : $($AutoProvisioning.Compliance)"
+        Write-Host "$ControlName is : $($MsDefenderForCloud.$ControlName.$SubscriptionId.Compliance)" 
 
         #2.12 Ensure Any of the ASC Default Policy Setting is Not Set to 'Disabled'
         $ControlName = "2.12 Ensure Any of the ASC Default Policy Setting is Not Set to Disabled"
         $ASCPolicyState = Get-ASCPolicyState
         $MsDefenderForCloud | Add-Member -MemberType NoteProperty -Name $ControlName -Value $ASCPolicyState -Force
-        Write-Host "$ControlName is : $($ASCPolicyState.Compliance)"
+        Write-Host "$ControlName is : $($MsDefenderForCloud.$ControlName.$SubscriptionId.Compliance)" 
 
         #2.13 Ensure 'Additional email addresses' is Configured with a Security Contact Email
         $ControlName = "2.13 Ensure 'Additional email addresses' is Configured with a Security Contact Email"
         $SecurityEmail = Get-SecurityContact
         $MsDefenderForCloud | Add-Member -MemberType NoteProperty -Name $ControlName -Value $SecurityEmail -Force
-        Write-Host "$ControlName is : $($SecurityEmail.Compliance)"
+        Write-Host "$ControlName is : $($MsDefenderForCloud.$ControlName.$SubscriptionId.Compliance)" 
 
         #2.14
         #2.15
     }
-
     Return $MsDefenderForCloud
 }
-
-
-
-
-
-
-
-
-
-
 
 <#
 .SYNOPSIS
@@ -102,26 +91,13 @@ Version : 1.0.0
 function Get-AzDefenderPricing {
     param (
         # Resource To check the Azure defender pricing
-        [Parameter(Mandatory = $true)][string]$ResourceToCheck,
-        [Parameter(Mandatory = $true)][object]$Subscription
+        [Parameter(Mandatory = $true)][string]$ResourceToCheck
     )
-
     $ControlResult = [PSCustomObject]@{}
     #the the pricing tier for the given resource type
-    $PricingTier = Get-AzSecurityPricing | Where-Object { $_.Name -eq $ResourceToCheck } | Select-Object Name, PricingTier
-
-    $Resource = [PSCustomObject]@{
-        SubscriptionName = $Subscription.Name
-        Subscription     = $Subscription.Id
-        PropertieChecked = "Pricing Tier"
-        CompliantValue   = "Standard"
-        CurrentValue     = $PricingTier.PricingTier
-        Compliance       = "Compliant"
-    }
-    if ($PricingTier.PricingTier -ne "Standard") {
-        $Resource.Compliance = "Uncompliant"
-    }
-    $ControlResult | Add-Member -MemberType NoteProperty -Name $Subscription.Id -Value $Resource
+    $PricingTier = Get-AzSecurityPricing | Where-Object { $_.Name -eq $ResourceToCheck } | Select-Object Id, Name, PricingTier
+    $Subscription = ($PricingTier.id -split ("/"))[2] 
+    $ControlResult = Set-ControlResultObject -CurrentValue $PricingTier.PricingTier -ResourceName $Subscription -ControlResult $ControlResult -PropertieToCheck "Pricing Tier" -CompliantValue "Standard" -Subscription $Subscription
     return $ControlResult
 }
 
@@ -143,13 +119,9 @@ function Get-MsDefenderIntegration {
         [Parameter(Mandatory = $true)][string]$IntegrationItem
     )
     $res = Get-AzSecuritySetting | Where-Object { ($_.Id -like "*$IntegrationItem") }
-    $ControlResult = [PSCustomObject]@{
-        Value      = $res.Enabled
-        Compliance = "Compliant"
-    }
-    if ($res.Enabled -ne "True") {
-        $ControlResult = "Uncompliant"
-    }
+    $ControlResult = [PSCustomObject]@{}
+    $Subscription = ($res.id -split ("/"))[2] 
+    $ControlResult = Set-ControlResultObject -CurrentValue $res.Enabled -ResourceName $Subscription -ControlResult $ControlResult -PropertieToCheck $IntegrationItem -CompliantValue "True" -Subscription $Subscription
     return $ControlResult
 }
 
@@ -169,13 +141,9 @@ Version : 1.0.0
 #>
 function Get-AutoProvisioning {
     $Res = Get-AzSecurityAutoProvisioningSetting
-    $ControlResult = [PSCustomObject]@{
-        Value      = $Res.AutoProvision
-        Compliance = "Compliant"
-    }
-    if ($Res.AutoProvision -ne "On") {
-        $ControlResult.Compliance = "UnCompliant"
-    }
+    $ControlResult = [PSCustomObject]@{}
+    $Subscription = ($Res.id -split ("/"))[2] 
+    $ControlResult = Set-ControlResultObject -CurrentValue $Res.AutoProvision -ResourceName $Subscription -ControlResult $ControlResult -PropertieToCheck "AutoProvision" -CompliantValue "On" -Subscription $Subscription
     return $ControlResult
 }
 
@@ -194,14 +162,15 @@ Version : 1.0.0
 #>
 function Get-ASCPolicyState {
     $WarningPreference = "SilentlyContinue"
-    $Res = Get-AzPolicyAssignment | Where-Object { $_.Name -eq "SecurityCenterBuiltIn" }
-    $ControlResult = [PSCustomObject]@{
-        Value      = $Res.Properties.EnforcementMode
-        Compliance = "Compliant"
+    try {
+        $Res = Get-AzPolicyAssignment | Where-Object { $_.Name -eq "SecurityCenterBuiltIn" }
     }
-    if ($Res.Properties.EnforcementMode -ne "Default") {
-        $ControlResult.Compliance = "Uncompliant"
+    catch {
+        Write-Host "Enable to Get ASCPolicyState"
     }
+    $ControlResult = [PSCustomObject]@{}
+    $Subscription = $Res.SubscriptionId
+    $ControlResult = Set-ControlResultObject -CurrentValue $Res.Properties.EnforcementMode -ResourceName $Subscription -ControlResult $ControlResult -PropertieToCheck "EnforcementMode" -CompliantValue "Default" -Subscription $Subscription
     return $ControlResult
 }
 
@@ -221,12 +190,11 @@ Version : 1.0.0
 #>
 function Get-SecurityContact {
     $Res = Get-AzSecurityContact
-    $ControlResult = [PSCustomObject]@{
-        Value      = $Res.Email
-        Compliance = "Compliant"
+    $ControlResult = [PSCustomObject]@{}
+    $Subscription = ($Res.id -split ("/"))[2]
+    if ($Res.Email -eq "") {
+        $SecurityContact = "Null"
     }
-    if (($null -eq $Res.Email) -or ("" -eq $Res.Email)) {
-        $ControlResult.Compliance = "Uncompliant"
-    }
+    $ControlResult = Set-ControlResultObject -CurrentValue $SecurityContact -ResourceName $Subscription -ControlResult $ControlResult -PropertieToCheck "Email" -CompliantValue "/WNull" -Subscription $Subscription
     return $ControlResult
 }

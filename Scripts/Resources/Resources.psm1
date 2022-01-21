@@ -22,24 +22,15 @@ function Get-ResourceProperties {
     )
     #Get all the resources of the type given
     $AllResourceByType = Get-AzResource -ResourceType $ResourceType -ExpandProperties
-    $ControlResult = [PSCustomObject]@{
-    }
+    $ControlResult = [PSCustomObject]@{}
     foreach ($ResourceByType in $AllResourceByType) {
         #Check for subpropertie existence like "NetworkAcl.bypass"
-        $CurrentValue = Get-SubPropertie -PropertieToCheck $PropertieToCheck -ResourceByType $ResourceByType
-        $Resource = [PSCustomObject]@{
-            ResourceName     = $ResourceByType.Name
-            Subscription     = $ResourceByType.SubscriptionId
-            PropertieChecked = $PropertieToCheck
-            CompliantValue   = $CompliantValue
-            CurrentValue     = $CurrentValue
-            Compliance       = "Compliant"
+        $CurrentValue = [string](Get-SubPropertie -PropertieToCheck $PropertieToCheck -ResourceByType $ResourceByType)
+        if (($null -eq $CurrentValue)  -or ("" -eq $CurrentValue)) {
+            $CurrentValue = "Not Configured"
         }
-        #Check the compliance
-        if ($CurrentValue -notmatch $CompliantValue) {
-            $Resource.Compliance = "Uncompliant"
-        }
-        $ControlResult | Add-Member -MemberType NoteProperty -Name $ResourceByType.Name -Value $Resource
+        $Subscription = $ResourceByType.SubscriptionId
+        $ControlResult = Set-ControlResultObject -CurrentValue $CurrentValue -ResourceName $ResourceByType.Name -ControlResult $ControlResult -PropertieToCheck $PropertieToCheck -CompliantValue $CompliantValue -Subscription $Subscription
     }
     return $ControlResult   
 }

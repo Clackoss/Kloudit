@@ -72,7 +72,7 @@ function Get-StorageClassicDiagSettings {
         [Parameter(Mandatory = $true)][string]$CompliantValue
     )
     $ControlResult = [PSCustomObject]@{}
-    #Get all the storage accounts in the resource groups
+    #Get all the storage accounts in the resource groups (can not use get-azresource because need of Context)
     $StorageAccounts = Get-AzStorageAccount
     foreach ($Storage in $StorageAccounts) {
         $StorageDiagSetting = [string](Get-AzStorageServiceLoggingProperty -ServiceType $PropertieToCheck -Context $Storage.Context).LoggingOperations 

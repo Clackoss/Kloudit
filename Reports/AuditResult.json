@@ -1,8 +1,8 @@
 {
-  "Microsoft Defender For Cloud": {
+  "2 - Microsoft Defender For Cloud": {
     "2.01 Ensure that Azure Defender is set to On for VirtualMachines": {
       "765266c6-9a23-4638-af32-dd1e32613047": {
-        "SubscriptionName": "Efrei - certification Az 104 - 500",
+        "ResourceName": "765266c6-9a23-4638-af32-dd1e32613047",
         "Subscription": "765266c6-9a23-4638-af32-dd1e32613047",
         "PropertieChecked": "Pricing Tier",
         "CompliantValue": "Standard",
@@ -12,7 +12,7 @@
     },
     "2.02 Ensure that Azure Defender is set to On for AppServices": {
       "765266c6-9a23-4638-af32-dd1e32613047": {
-        "SubscriptionName": "Efrei - certification Az 104 - 500",
+        "ResourceName": "765266c6-9a23-4638-af32-dd1e32613047",
         "Subscription": "765266c6-9a23-4638-af32-dd1e32613047",
         "PropertieChecked": "Pricing Tier",
         "CompliantValue": "Standard",
@@ -22,7 +22,7 @@
     },
     "2.03 Ensure that Azure Defender is set to On for SqlServers": {
       "765266c6-9a23-4638-af32-dd1e32613047": {
-        "SubscriptionName": "Efrei - certification Az 104 - 500",
+        "ResourceName": "765266c6-9a23-4638-af32-dd1e32613047",
         "Subscription": "765266c6-9a23-4638-af32-dd1e32613047",
         "PropertieChecked": "Pricing Tier",
         "CompliantValue": "Standard",
@@ -32,7 +32,7 @@
     },
     "2.04 Ensure that Azure Defender is set to On for SqlServerVirtualMachines": {
       "765266c6-9a23-4638-af32-dd1e32613047": {
-        "SubscriptionName": "Efrei - certification Az 104 - 500",
+        "ResourceName": "765266c6-9a23-4638-af32-dd1e32613047",
         "Subscription": "765266c6-9a23-4638-af32-dd1e32613047",
         "PropertieChecked": "Pricing Tier",
         "CompliantValue": "Standard",
@@ -42,7 +42,7 @@
     },
     "2.05 Ensure that Azure Defender is set to On for StorageAccounts": {
       "765266c6-9a23-4638-af32-dd1e32613047": {
-        "SubscriptionName": "Efrei - certification Az 104 - 500",
+        "ResourceName": "765266c6-9a23-4638-af32-dd1e32613047",
         "Subscription": "765266c6-9a23-4638-af32-dd1e32613047",
         "PropertieChecked": "Pricing Tier",
         "CompliantValue": "Standard",
@@ -52,7 +52,7 @@
     },
     "2.06 Ensure that Azure Defender is set to On for KubernetesService": {
       "765266c6-9a23-4638-af32-dd1e32613047": {
-        "SubscriptionName": "Efrei - certification Az 104 - 500",
+        "ResourceName": "765266c6-9a23-4638-af32-dd1e32613047",
         "Subscription": "765266c6-9a23-4638-af32-dd1e32613047",
         "PropertieChecked": "Pricing Tier",
         "CompliantValue": "Standard",
@@ -62,7 +62,7 @@
     },
     "2.07 Ensure that Azure Defender is set to On for ContainerRegistry": {
       "765266c6-9a23-4638-af32-dd1e32613047": {
-        "SubscriptionName": "Efrei - certification Az 104 - 500",
+        "ResourceName": "765266c6-9a23-4638-af32-dd1e32613047",
         "Subscription": "765266c6-9a23-4638-af32-dd1e32613047",
         "PropertieChecked": "Pricing Tier",
         "CompliantValue": "Standard",
@@ -72,7 +72,7 @@
     },
     "2.08 Ensure that Azure Defender is set to On for KeyVaults": {
       "765266c6-9a23-4638-af32-dd1e32613047": {
-        "SubscriptionName": "Efrei - certification Az 104 - 500",
+        "ResourceName": "765266c6-9a23-4638-af32-dd1e32613047",
         "Subscription": "765266c6-9a23-4638-af32-dd1e32613047",
         "PropertieChecked": "Pricing Tier",
         "CompliantValue": "Standard",
@@ -81,34 +81,72 @@
       }
     },
     "2.9 Ensure that Microsoft Defender for Endpoint (WDATP) integraiton is selected": {
-      "Value": true,
-      "Compliance": "Compliant"
+      "765266c6-9a23-4638-af32-dd1e32613047": {
+        "ResourceName": "765266c6-9a23-4638-af32-dd1e32613047",
+        "Subscription": "765266c6-9a23-4638-af32-dd1e32613047",
+        "PropertieChecked": "WDATP",
+        "CompliantValue": "True",
+        "CurrentValue": "True",
+        "Compliance": "Compliant"
+      }
     },
     "2.10 Ensure that Microsoft Defender for Endpoint (MCAS) integraiton is selected": {
-      "Value": true,
-      "Compliance": "Compliant"
+      "765266c6-9a23-4638-af32-dd1e32613047": {
+        "ResourceName": "765266c6-9a23-4638-af32-dd1e32613047",
+        "Subscription": "765266c6-9a23-4638-af32-dd1e32613047",
+        "PropertieChecked": "MCAS",
+        "CompliantValue": "True",
+        "CurrentValue": "True",
+        "Compliance": "Compliant"
+      }
     },
     "2.11 Ensure That Auto provisioning of Log Analytics agent for Azure VMs is Set to On": {
-      "Value": "On",
-      "Compliance": "Compliant"
+      "765266c6-9a23-4638-af32-dd1e32613047": {
+        "ResourceName": "765266c6-9a23-4638-af32-dd1e32613047",
+        "Subscription": "765266c6-9a23-4638-af32-dd1e32613047",
+        "PropertieChecked": "AutoProvision",
+        "CompliantValue": "On",
+        "CurrentValue": "On",
+        "Compliance": "Compliant"
+      }
     },
     "2.12 Ensure Any of the ASC Default Policy Setting is Not Set to Disabled": {
-      "Value": 0,
-      "Compliance": "Compliant"
+      "765266c6-9a23-4638-af32-dd1e32613047": {
+        "ResourceName": "765266c6-9a23-4638-af32-dd1e32613047",
+        "Subscription": "765266c6-9a23-4638-af32-dd1e32613047",
+        "PropertieChecked": "EnforcementMode",
+        "CompliantValue": "Default",
+        "CurrentValue": "Default",
+        "Compliance": "Compliant"
+      }
     },
     "2.13 Ensure 'Additional email addresses' is Configured with a Security Contact Email": {
-      "Value": "",
-      "Compliance": "Uncompliant"
+      "765266c6-9a23-4638-af32-dd1e32613047": {
+        "ResourceName": "765266c6-9a23-4638-af32-dd1e32613047",
+        "Subscription": "765266c6-9a23-4638-af32-dd1e32613047",
+        "PropertieChecked": "Email",
+        "CompliantValue": "Not Null",
+        "CurrentValue": "Null",
+        "Compliance": "Uncompliant"
+      }
     }
   },
-  "Storage Accounts": {
+  "3 - Storage Accounts": {
     "3.01 Ensure that [supportsHttpsTrafficOnly] is set to [True]": {
+      "csb100320005c443464": {
+        "ResourceName": "csb100320005c443464",
+        "Subscription": "765266c6-9a23-4638-af32-dd1e32613047",
+        "PropertieChecked": "supportsHttpsTrafficOnly",
+        "CompliantValue": "True",
+        "CurrentValue": "True",
+        "Compliance": "Compliant"
+      },
       "csb10032000a599ed7c": {
         "ResourceName": "csb10032000a599ed7c",
         "Subscription": "765266c6-9a23-4638-af32-dd1e32613047",
         "PropertieChecked": "supportsHttpsTrafficOnly",
         "CompliantValue": "True",
-        "CurrentValue": true,
+        "CurrentValue": "True",
         "Compliance": "Compliant"
       },
       "csb10033fff9a650085": {
@@ -116,7 +154,7 @@
         "Subscription": "765266c6-9a23-4638-af32-dd1e32613047",
         "PropertieChecked": "supportsHttpsTrafficOnly",
         "CompliantValue": "True",
-        "CurrentValue": true,
+        "CurrentValue": "True",
         "Compliance": "Compliant"
       },
       "csb10037ffe9a5eb83f": {
@@ -124,7 +162,7 @@
         "Subscription": "765266c6-9a23-4638-af32-dd1e32613047",
         "PropertieChecked": "supportsHttpsTrafficOnly",
         "CompliantValue": "True",
-        "CurrentValue": true,
+        "CurrentValue": "True",
         "Compliance": "Compliant"
       },
       "csb1003bffd99d8a22d": {
@@ -132,7 +170,7 @@
         "Subscription": "765266c6-9a23-4638-af32-dd1e32613047",
         "PropertieChecked": "supportsHttpsTrafficOnly",
         "CompliantValue": "True",
-        "CurrentValue": true,
+        "CurrentValue": "True",
         "Compliance": "Compliant"
       },
       "csb1003bffdad90ad47": {
@@ -140,7 +178,7 @@
         "Subscription": "765266c6-9a23-4638-af32-dd1e32613047",
         "PropertieChecked": "supportsHttpsTrafficOnly",
         "CompliantValue": "True",
-        "CurrentValue": true,
+        "CurrentValue": "True",
         "Compliance": "Compliant"
       },
       "csb1003bffdad90af8f": {
@@ -148,7 +186,7 @@
         "Subscription": "765266c6-9a23-4638-af32-dd1e32613047",
         "PropertieChecked": "supportsHttpsTrafficOnly",
         "CompliantValue": "True",
-        "CurrentValue": true,
+        "CurrentValue": "True",
         "Compliance": "Compliant"
       },
       "storagetestefrei": {
@@ -156,17 +194,25 @@
         "Subscription": "765266c6-9a23-4638-af32-dd1e32613047",
         "PropertieChecked": "supportsHttpsTrafficOnly",
         "CompliantValue": "True",
-        "CurrentValue": false,
+        "CurrentValue": "False",
         "Compliance": "Uncompliant"
       }
     },
-    "3.02 Ensure that [supportsHttpsTrafficOnly] is set to [True]": {
+    "3.02 Ensure that [KeyPolicy.keyExpirationPeriodInDays] is set to [[0-365]]": {
+      "csb100320005c443464": {
+        "ResourceName": "csb100320005c443464",
+        "Subscription": "765266c6-9a23-4638-af32-dd1e32613047",
+        "PropertieChecked": "KeyPolicy.keyExpirationPeriodInDays",
+        "CompliantValue": "[0-365]",
+        "CurrentValue": "Not Configured",
+        "Compliance": "Uncompliant"
+      },
       "csb10032000a599ed7c": {
         "ResourceName": "csb10032000a599ed7c",
         "Subscription": "765266c6-9a23-4638-af32-dd1e32613047",
         "PropertieChecked": "KeyPolicy.keyExpirationPeriodInDays",
         "CompliantValue": "[0-365]",
-        "CurrentValue": null,
+        "CurrentValue": "Not Configured",
         "Compliance": "Uncompliant"
       },
       "csb10033fff9a650085": {
@@ -174,7 +220,7 @@
         "Subscription": "765266c6-9a23-4638-af32-dd1e32613047",
         "PropertieChecked": "KeyPolicy.keyExpirationPeriodInDays",
         "CompliantValue": "[0-365]",
-        "CurrentValue": null,
+        "CurrentValue": "Not Configured",
         "Compliance": "Uncompliant"
       },
       "csb10037ffe9a5eb83f": {
@@ -182,7 +228,7 @@
         "Subscription": "765266c6-9a23-4638-af32-dd1e32613047",
         "PropertieChecked": "KeyPolicy.keyExpirationPeriodInDays",
         "CompliantValue": "[0-365]",
-        "CurrentValue": null,
+        "CurrentValue": "Not Configured",
         "Compliance": "Uncompliant"
       },
       "csb1003bffd99d8a22d": {
@@ -190,7 +236,7 @@
         "Subscription": "765266c6-9a23-4638-af32-dd1e32613047",
         "PropertieChecked": "KeyPolicy.keyExpirationPeriodInDays",
         "CompliantValue": "[0-365]",
-        "CurrentValue": null,
+        "CurrentValue": "Not Configured",
         "Compliance": "Uncompliant"
       },
       "csb1003bffdad90ad47": {
@@ -198,7 +244,7 @@
         "Subscription": "765266c6-9a23-4638-af32-dd1e32613047",
         "PropertieChecked": "KeyPolicy.keyExpirationPeriodInDays",
         "CompliantValue": "[0-365]",
-        "CurrentValue": null,
+        "CurrentValue": "Not Configured",
         "Compliance": "Uncompliant"
       },
       "csb1003bffdad90af8f": {
@@ -206,7 +252,7 @@
         "Subscription": "765266c6-9a23-4638-af32-dd1e32613047",
         "PropertieChecked": "KeyPolicy.keyExpirationPeriodInDays",
         "CompliantValue": "[0-365]",
-        "CurrentValue": null,
+        "CurrentValue": "Not Configured",
         "Compliance": "Uncompliant"
       },
       "storagetestefrei": {
@@ -214,17 +260,25 @@
         "Subscription": "765266c6-9a23-4638-af32-dd1e32613047",
         "PropertieChecked": "KeyPolicy.keyExpirationPeriodInDays",
         "CompliantValue": "[0-365]",
-        "CurrentValue": 90,
+        "CurrentValue": "90",
         "Compliance": "Compliant"
       }
     },
-    "3.05 Ensure that [supportsHttpsTrafficOnly] is set to [True]": {
+    "3.05 Ensure that [allowBlobPublicAccess] is set to [False]": {
+      "csb100320005c443464": {
+        "ResourceName": "csb100320005c443464",
+        "Subscription": "765266c6-9a23-4638-af32-dd1e32613047",
+        "PropertieChecked": "allowBlobPublicAccess",
+        "CompliantValue": "False",
+        "CurrentValue": "False",
+        "Compliance": "Compliant"
+      },
       "csb10032000a599ed7c": {
         "ResourceName": "csb10032000a599ed7c",
         "Subscription": "765266c6-9a23-4638-af32-dd1e32613047",
         "PropertieChecked": "allowBlobPublicAccess",
         "CompliantValue": "False",
-        "CurrentValue": false,
+        "CurrentValue": "False",
         "Compliance": "Compliant"
       },
       "csb10033fff9a650085": {
@@ -232,7 +286,7 @@
         "Subscription": "765266c6-9a23-4638-af32-dd1e32613047",
         "PropertieChecked": "allowBlobPublicAccess",
         "CompliantValue": "False",
-        "CurrentValue": false,
+        "CurrentValue": "False",
         "Compliance": "Compliant"
       },
       "csb10037ffe9a5eb83f": {
@@ -240,7 +294,7 @@
         "Subscription": "765266c6-9a23-4638-af32-dd1e32613047",
         "PropertieChecked": "allowBlobPublicAccess",
         "CompliantValue": "False",
-        "CurrentValue": false,
+        "CurrentValue": "False",
         "Compliance": "Compliant"
       },
       "csb1003bffd99d8a22d": {
@@ -248,7 +302,7 @@
         "Subscription": "765266c6-9a23-4638-af32-dd1e32613047",
         "PropertieChecked": "allowBlobPublicAccess",
         "CompliantValue": "False",
-        "CurrentValue": false,
+        "CurrentValue": "False",
         "Compliance": "Compliant"
       },
       "csb1003bffdad90ad47": {
@@ -256,7 +310,7 @@
         "Subscription": "765266c6-9a23-4638-af32-dd1e32613047",
         "PropertieChecked": "allowBlobPublicAccess",
         "CompliantValue": "False",
-        "CurrentValue": false,
+        "CurrentValue": "False",
         "Compliance": "Compliant"
       },
       "csb1003bffdad90af8f": {
@@ -264,7 +318,7 @@
         "Subscription": "765266c6-9a23-4638-af32-dd1e32613047",
         "PropertieChecked": "allowBlobPublicAccess",
         "CompliantValue": "False",
-        "CurrentValue": false,
+        "CurrentValue": "False",
         "Compliance": "Compliant"
       },
       "storagetestefrei": {
@@ -272,11 +326,19 @@
         "Subscription": "765266c6-9a23-4638-af32-dd1e32613047",
         "PropertieChecked": "allowBlobPublicAccess",
         "CompliantValue": "False",
-        "CurrentValue": true,
+        "CurrentValue": "True",
         "Compliance": "Uncompliant"
       }
     },
-    "3.06 Ensure that [supportsHttpsTrafficOnly] is set to [True]": {
+    "3.06 Ensure that [networkAcls.defaultAction] is set to [Deny]": {
+      "csb100320005c443464": {
+        "ResourceName": "csb100320005c443464",
+        "Subscription": "765266c6-9a23-4638-af32-dd1e32613047",
+        "PropertieChecked": "networkAcls.defaultAction",
+        "CompliantValue": "Deny",
+        "CurrentValue": "Allow",
+        "Compliance": "Uncompliant"
+      },
       "csb10032000a599ed7c": {
         "ResourceName": "csb10032000a599ed7c",
         "Subscription": "765266c6-9a23-4638-af32-dd1e32613047",
@@ -334,7 +396,15 @@
         "Compliance": "Compliant"
       }
     },
-    "3.07 Ensure that [supportsHttpsTrafficOnly] is set to [True]": {
+    "3.07 Ensure that [networkAcls.bypass] is set to [AzureServices]": {
+      "csb100320005c443464": {
+        "ResourceName": "csb100320005c443464",
+        "Subscription": "765266c6-9a23-4638-af32-dd1e32613047",
+        "PropertieChecked": "networkAcls.bypass",
+        "CompliantValue": "AzureServices",
+        "CurrentValue": "AzureServices",
+        "Compliance": "Compliant"
+      },
       "csb10032000a599ed7c": {
         "ResourceName": "csb10032000a599ed7c",
         "Subscription": "765266c6-9a23-4638-af32-dd1e32613047",
@@ -392,7 +462,15 @@
         "Compliance": "Compliant"
       }
     },
-    "3.12 Ensure that [supportsHttpsTrafficOnly] is set to [True]": {
+    "3.12 Ensure that [minimumTlsVersion] is set to [TLS1_2]": {
+      "csb100320005c443464": {
+        "ResourceName": "csb100320005c443464",
+        "Subscription": "765266c6-9a23-4638-af32-dd1e32613047",
+        "PropertieChecked": "minimumTlsVersion",
+        "CompliantValue": "TLS1_2",
+        "CurrentValue": "TLS1_2",
+        "Compliance": "Compliant"
+      },
       "csb10032000a599ed7c": {
         "ResourceName": "csb10032000a599ed7c",
         "Subscription": "765266c6-9a23-4638-af32-dd1e32613047",
@@ -450,180 +528,299 @@
         "Compliance": "Uncompliant"
       }
     },
-    "3.03 Ensure Storage logging is enabled for [Queue]": {
+    "3.08 Ensure that [DeleteRetentionPolicy.Enabled] is Enabled for Azure Storage": {
+      "csb100320005c443464": {
+        "ResourceName": "csb100320005c443464",
+        "Subscription": "765266c6-9a23-4638-af32-dd1e32613047",
+        "PropertieChecked": "DeleteRetentionPolicy.Enabled",
+        "CompliantValue": "True",
+        "CurrentValue": "False",
+        "Compliance": "Uncompliant"
+      },
       "csb10032000a599ed7c": {
         "ResourceName": "csb10032000a599ed7c",
         "Subscription": "765266c6-9a23-4638-af32-dd1e32613047",
-        "PropertieChecked": "Queue LoggingOperations",
-        "CompliantValue": "All",
-        "CurrentValue": 0,
+        "PropertieChecked": "DeleteRetentionPolicy.Enabled",
+        "CompliantValue": "True",
+        "CurrentValue": "False",
         "Compliance": "Uncompliant"
       },
       "csb10033fff9a650085": {
         "ResourceName": "csb10033fff9a650085",
         "Subscription": "765266c6-9a23-4638-af32-dd1e32613047",
-        "PropertieChecked": "Queue LoggingOperations",
-        "CompliantValue": "All",
-        "CurrentValue": 0,
+        "PropertieChecked": "DeleteRetentionPolicy.Enabled",
+        "CompliantValue": "True",
+        "CurrentValue": "False",
         "Compliance": "Uncompliant"
       },
       "csb10037ffe9a5eb83f": {
         "ResourceName": "csb10037ffe9a5eb83f",
         "Subscription": "765266c6-9a23-4638-af32-dd1e32613047",
-        "PropertieChecked": "Queue LoggingOperations",
-        "CompliantValue": "All",
-        "CurrentValue": 0,
+        "PropertieChecked": "DeleteRetentionPolicy.Enabled",
+        "CompliantValue": "True",
+        "CurrentValue": "False",
         "Compliance": "Uncompliant"
       },
       "csb1003bffd99d8a22d": {
         "ResourceName": "csb1003bffd99d8a22d",
         "Subscription": "765266c6-9a23-4638-af32-dd1e32613047",
-        "PropertieChecked": "Queue LoggingOperations",
-        "CompliantValue": "All",
-        "CurrentValue": 0,
+        "PropertieChecked": "DeleteRetentionPolicy.Enabled",
+        "CompliantValue": "True",
+        "CurrentValue": "False",
         "Compliance": "Uncompliant"
       },
       "csb1003bffdad90ad47": {
         "ResourceName": "csb1003bffdad90ad47",
         "Subscription": "765266c6-9a23-4638-af32-dd1e32613047",
-        "PropertieChecked": "Queue LoggingOperations",
-        "CompliantValue": "All",
-        "CurrentValue": 0,
+        "PropertieChecked": "DeleteRetentionPolicy.Enabled",
+        "CompliantValue": "True",
+        "CurrentValue": "False",
         "Compliance": "Uncompliant"
       },
       "csb1003bffdad90af8f": {
         "ResourceName": "csb1003bffdad90af8f",
         "Subscription": "765266c6-9a23-4638-af32-dd1e32613047",
-        "PropertieChecked": "Queue LoggingOperations",
-        "CompliantValue": "All",
-        "CurrentValue": 0,
+        "PropertieChecked": "DeleteRetentionPolicy.Enabled",
+        "CompliantValue": "True",
+        "CurrentValue": "False",
         "Compliance": "Uncompliant"
       },
       "storagetestefrei": {
         "ResourceName": "storagetestefrei",
         "Subscription": "765266c6-9a23-4638-af32-dd1e32613047",
-        "PropertieChecked": "Queue LoggingOperations",
-        "CompliantValue": "All",
-        "CurrentValue": 7,
+        "PropertieChecked": "DeleteRetentionPolicy.Enabled",
+        "CompliantValue": "True",
+        "CurrentValue": "True",
         "Compliance": "Compliant"
       }
     },
-    "3.10 Ensure Storage logging is enabled for [Queue]": {
+    "3.03 Ensure Storage logging is enabled for [Queue]": {
+      "csb100320005c443464": {
+        "ResourceName": "csb100320005c443464",
+        "Subscription": "765266c6-9a23-4638-af32-dd1e32613047",
+        "PropertieChecked": "Queue",
+        "CompliantValue": "All",
+        "CurrentValue": "None",
+        "Compliance": "Uncompliant"
+      },
       "csb10032000a599ed7c": {
         "ResourceName": "csb10032000a599ed7c",
         "Subscription": "765266c6-9a23-4638-af32-dd1e32613047",
-        "PropertieChecked": "Blob LoggingOperations",
+        "PropertieChecked": "Queue",
         "CompliantValue": "All",
-        "CurrentValue": 0,
+        "CurrentValue": "None",
         "Compliance": "Uncompliant"
       },
       "csb10033fff9a650085": {
         "ResourceName": "csb10033fff9a650085",
         "Subscription": "765266c6-9a23-4638-af32-dd1e32613047",
-        "PropertieChecked": "Blob LoggingOperations",
+        "PropertieChecked": "Queue",
         "CompliantValue": "All",
-        "CurrentValue": 0,
+        "CurrentValue": "None",
         "Compliance": "Uncompliant"
       },
       "csb10037ffe9a5eb83f": {
         "ResourceName": "csb10037ffe9a5eb83f",
         "Subscription": "765266c6-9a23-4638-af32-dd1e32613047",
-        "PropertieChecked": "Blob LoggingOperations",
+        "PropertieChecked": "Queue",
         "CompliantValue": "All",
-        "CurrentValue": 0,
+        "CurrentValue": "None",
         "Compliance": "Uncompliant"
       },
       "csb1003bffd99d8a22d": {
         "ResourceName": "csb1003bffd99d8a22d",
         "Subscription": "765266c6-9a23-4638-af32-dd1e32613047",
-        "PropertieChecked": "Blob LoggingOperations",
+        "PropertieChecked": "Queue",
         "CompliantValue": "All",
-        "CurrentValue": 0,
+        "CurrentValue": "None",
         "Compliance": "Uncompliant"
       },
       "csb1003bffdad90ad47": {
         "ResourceName": "csb1003bffdad90ad47",
         "Subscription": "765266c6-9a23-4638-af32-dd1e32613047",
-        "PropertieChecked": "Blob LoggingOperations",
+        "PropertieChecked": "Queue",
         "CompliantValue": "All",
-        "CurrentValue": 0,
+        "CurrentValue": "None",
         "Compliance": "Uncompliant"
       },
       "csb1003bffdad90af8f": {
         "ResourceName": "csb1003bffdad90af8f",
         "Subscription": "765266c6-9a23-4638-af32-dd1e32613047",
-        "PropertieChecked": "Blob LoggingOperations",
+        "PropertieChecked": "Queue",
         "CompliantValue": "All",
-        "CurrentValue": 0,
+        "CurrentValue": "None",
         "Compliance": "Uncompliant"
       },
       "storagetestefrei": {
         "ResourceName": "storagetestefrei",
         "Subscription": "765266c6-9a23-4638-af32-dd1e32613047",
-        "PropertieChecked": "Blob LoggingOperations",
+        "PropertieChecked": "Queue",
         "CompliantValue": "All",
-        "CurrentValue": 0,
+        "CurrentValue": "All",
+        "Compliance": "Compliant"
+      }
+    },
+    "3.10 Ensure Storage logging is enabled for [Blob]": {
+      "csb100320005c443464": {
+        "ResourceName": "csb100320005c443464",
+        "Subscription": "765266c6-9a23-4638-af32-dd1e32613047",
+        "PropertieChecked": "Blob",
+        "CompliantValue": "All",
+        "CurrentValue": "None",
+        "Compliance": "Uncompliant"
+      },
+      "csb10032000a599ed7c": {
+        "ResourceName": "csb10032000a599ed7c",
+        "Subscription": "765266c6-9a23-4638-af32-dd1e32613047",
+        "PropertieChecked": "Blob",
+        "CompliantValue": "All",
+        "CurrentValue": "None",
+        "Compliance": "Uncompliant"
+      },
+      "csb10033fff9a650085": {
+        "ResourceName": "csb10033fff9a650085",
+        "Subscription": "765266c6-9a23-4638-af32-dd1e32613047",
+        "PropertieChecked": "Blob",
+        "CompliantValue": "All",
+        "CurrentValue": "None",
+        "Compliance": "Uncompliant"
+      },
+      "csb10037ffe9a5eb83f": {
+        "ResourceName": "csb10037ffe9a5eb83f",
+        "Subscription": "765266c6-9a23-4638-af32-dd1e32613047",
+        "PropertieChecked": "Blob",
+        "CompliantValue": "All",
+        "CurrentValue": "None",
+        "Compliance": "Uncompliant"
+      },
+      "csb1003bffd99d8a22d": {
+        "ResourceName": "csb1003bffd99d8a22d",
+        "Subscription": "765266c6-9a23-4638-af32-dd1e32613047",
+        "PropertieChecked": "Blob",
+        "CompliantValue": "All",
+        "CurrentValue": "None",
+        "Compliance": "Uncompliant"
+      },
+      "csb1003bffdad90ad47": {
+        "ResourceName": "csb1003bffdad90ad47",
+        "Subscription": "765266c6-9a23-4638-af32-dd1e32613047",
+        "PropertieChecked": "Blob",
+        "CompliantValue": "All",
+        "CurrentValue": "None",
+        "Compliance": "Uncompliant"
+      },
+      "csb1003bffdad90af8f": {
+        "ResourceName": "csb1003bffdad90af8f",
+        "Subscription": "765266c6-9a23-4638-af32-dd1e32613047",
+        "PropertieChecked": "Blob",
+        "CompliantValue": "All",
+        "CurrentValue": "None",
+        "Compliance": "Uncompliant"
+      },
+      "storagetestefrei": {
+        "ResourceName": "storagetestefrei",
+        "Subscription": "765266c6-9a23-4638-af32-dd1e32613047",
+        "PropertieChecked": "Blob",
+        "CompliantValue": "All",
+        "CurrentValue": "None",
         "Compliance": "Uncompliant"
       }
     },
-    "3.11 Ensure Storage logging is enabled for [Queue]": {
+    "3.11 Ensure Storage logging is enabled for [Table]": {
+      "csb100320005c443464": {
+        "ResourceName": "csb100320005c443464",
+        "Subscription": "765266c6-9a23-4638-af32-dd1e32613047",
+        "PropertieChecked": "Table",
+        "CompliantValue": "All",
+        "CurrentValue": "None",
+        "Compliance": "Uncompliant"
+      },
       "csb10032000a599ed7c": {
         "ResourceName": "csb10032000a599ed7c",
         "Subscription": "765266c6-9a23-4638-af32-dd1e32613047",
-        "PropertieChecked": "Table LoggingOperations",
+        "PropertieChecked": "Table",
         "CompliantValue": "All",
-        "CurrentValue": 0,
+        "CurrentValue": "None",
         "Compliance": "Uncompliant"
       },
       "csb10033fff9a650085": {
         "ResourceName": "csb10033fff9a650085",
         "Subscription": "765266c6-9a23-4638-af32-dd1e32613047",
-        "PropertieChecked": "Table LoggingOperations",
+        "PropertieChecked": "Table",
         "CompliantValue": "All",
-        "CurrentValue": 0,
+        "CurrentValue": "None",
         "Compliance": "Uncompliant"
       },
       "csb10037ffe9a5eb83f": {
         "ResourceName": "csb10037ffe9a5eb83f",
         "Subscription": "765266c6-9a23-4638-af32-dd1e32613047",
-        "PropertieChecked": "Table LoggingOperations",
+        "PropertieChecked": "Table",
         "CompliantValue": "All",
-        "CurrentValue": 0,
+        "CurrentValue": "None",
         "Compliance": "Uncompliant"
       },
       "csb1003bffd99d8a22d": {
         "ResourceName": "csb1003bffd99d8a22d",
         "Subscription": "765266c6-9a23-4638-af32-dd1e32613047",
-        "PropertieChecked": "Table LoggingOperations",
+        "PropertieChecked": "Table",
         "CompliantValue": "All",
-        "CurrentValue": 0,
+        "CurrentValue": "None",
         "Compliance": "Uncompliant"
       },
       "csb1003bffdad90ad47": {
         "ResourceName": "csb1003bffdad90ad47",
         "Subscription": "765266c6-9a23-4638-af32-dd1e32613047",
-        "PropertieChecked": "Table LoggingOperations",
+        "PropertieChecked": "Table",
         "CompliantValue": "All",
-        "CurrentValue": 0,
+        "CurrentValue": "None",
         "Compliance": "Uncompliant"
       },
       "csb1003bffdad90af8f": {
         "ResourceName": "csb1003bffdad90af8f",
         "Subscription": "765266c6-9a23-4638-af32-dd1e32613047",
-        "PropertieChecked": "Table LoggingOperations",
+        "PropertieChecked": "Table",
         "CompliantValue": "All",
-        "CurrentValue": 0,
+        "CurrentValue": "None",
         "Compliance": "Uncompliant"
       },
       "storagetestefrei": {
         "ResourceName": "storagetestefrei",
         "Subscription": "765266c6-9a23-4638-af32-dd1e32613047",
-        "PropertieChecked": "Table LoggingOperations",
+        "PropertieChecked": "Table",
         "CompliantValue": "All",
-        "CurrentValue": 0,
+        "CurrentValue": "None",
         "Compliance": "Uncompliant"
       }
     }
   },
-  "Data Bases": null
+  "4 - Data Bases": {
+    "4.01.2 Ensure [DataEncryption] is enabled on SQL DataBases": {
+      "sqlservefrei/master": {
+        "ResourceName": "sqlservefrei/master",
+        "Subscription": "765266c6-9a23-4638-af32-dd1e32613047",
+        "PropertieChecked": "DataEncryption",
+        "CompliantValue": "Enabled",
+        "CurrentValue": "Disabled",
+        "Compliance": "Uncompliant"
+      },
+      "sqlservefrei/sqldbefrei": {
+        "ResourceName": "sqlservefrei/sqldbefrei",
+        "Subscription": "765266c6-9a23-4638-af32-dd1e32613047",
+        "PropertieChecked": "DataEncryption",
+        "CompliantValue": "Enabled",
+        "CurrentValue": "Enabled",
+        "Compliance": "Compliant"
+      }
+    },
+    "4.02.1 Ensure that ATP on a SQL Server is Set to [Enabled]": {
+      "sqlservefrei": {
+        "ResourceName": "sqlservefrei",
+        "Subscription": "765266c6-9a23-4638-af32-dd1e32613047",
+        "PropertieChecked": "ThreatDetectionState",
+        "CompliantValue": "Enabled",
+        "CurrentValue": "Disabled",
+        "Compliance": "Uncompliant"
+      }
+    }
+  }
 }

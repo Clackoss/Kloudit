@@ -9,8 +9,14 @@ function Login {
     #Force Stop in case of error
     $ErrorActionPreference = "Stop"
     #Connect to Azure
-    Connect-AzAccount
-    Write-Output "`n"
+    try {
+        Connect-AzAccount
+    }
+    catch {
+        Write-Host "Unable to connect to Azure.`nYou Should check the credentials used."
+        throw
+    }
+    Write-Output "Connection successfully etablished`n"
 }
 
 <#
@@ -33,7 +39,7 @@ function Format-HtmlTable {
     $ElementToAdd = ""
 
     foreach ($SubjectToControl in ($AllData | Get-Member -memberType NoteProperty).Name) {
-        $ElementToAdd += "<h2>" + $SubjectToControl + "</h2><br>`n"
+        $ElementToAdd += "<br><h2>" + $SubjectToControl + "</h2>`n"
             
         foreach ($ControlPoint in ($AllData.$SubjectToControl | Get-Member -memberType NoteProperty).Name) {
             #Remove the 0 before control point number like "2.03"
@@ -43,16 +49,14 @@ function Format-HtmlTable {
             }
             $PrintedControlPoint = $split[0] + "." + $split[1]
             $ElementToAdd += "<br><h3>" + $PrintedControlPoint + "</h3><br>`n"
-            $ElementToAdd += "<table>`n<colgroup><col/><col/><col/><col/><col/></colgroup>`n"
+            $ElementToAdd += "<table class='rwd-table'>`n<colgroup><col/><col/><col/><col/><col/></colgroup>`n"
             $ElementToAdd += "<tr><th>ResourceName</th><th>SubscriptionId</th><th>PropertieChecked</th><th>CompliantValue</th><th>CurrentValue</th><th>Compliance</th></tr>`n"
 
             foreach ($Resource in ($AllData.$SubjectToControl.$ControlPoint | Get-Member -memberType NoteProperty).Name) {
                 $ElementToAdd += "<tr><td>$($AllData.$SubjectToControl.$ControlPoint.$Resource.ResourceName)</td><td>$($AllData.$SubjectToControl.$ControlPoint.$Resource.Subscription)</td><td>$($AllData.$SubjectToControl.$ControlPoint.$Resource.PropertieChecked)</td><td>$($AllData.$SubjectToControl.$ControlPoint.$Resource.CompliantValue)</td><td>$($AllData.$SubjectToControl.$ControlPoint.$Resource.CurrentValue)</td><td>$($AllData.$SubjectToControl.$ControlPoint.$Resource.Compliance)</td></tr>`n"
             }
-
             $ElementToAdd += "</table>"
         }
-
     }
     $HtmlPage = $HtmlPage -replace "DATAHERE", $ElementToAdd
     $HtmlPage | Set-Content -Path "./Web/index.html" -Force
@@ -117,10 +121,10 @@ Version : 1.0.0
 #>
 function Get-Compliance {
     param (
-        [Parameter(Mandatory = $true)][string]$CurrentValue,
+        [Parameter(Mandatory = $true)][AllowEmptyString()][string]$CurrentValue,
         [Parameter(Mandatory = $true)][string]$CompliantValue
     )
-    if ($CurrentValue -notmatch $CompliantValue) {
+    if (($CurrentValue -notmatch $CompliantValue) -or ($null -eq $CurrentValue)) {
         return "Uncompliant"
     }
     else {
@@ -185,10 +189,20 @@ function Set-ControlResultObject {
         [Parameter(Mandatory = $true)][PscustomObject]$ControlResult,
         [Parameter(Mandatory = $true)][string]$PropertieToCheck,
         [Parameter(Mandatory = $true)][string]$CompliantValue,
-        [Parameter(Mandatory = $true)][string]$CurrentValue,
+        [Parameter(Mandatory = $true)][string][AllowEmptyString()]$CurrentValue,
         [Parameter(Mandatory = $true)][string]$ResourceName,
         [Parameter(Mandatory = $true)][string]$Subscription
     )
+    #Get compliance of the control (Compliant/Uncompliant)
+    $Compliance = Get-Compliance -CurrentValue $CurrentValue -CompliantValue $CompliantValue
+
+    #Format value to delete Regex in Output
+    if ($CompliantValue.Contains("/W")) {
+        $CompliantValue = $CompliantValue.Replace("/W", "Not ")
+    }
+    if ($CurrentValue -eq "") {
+        $CurrentValue = "Null"
+    }
     
     $Resource = [PSCustomObject]@{
         ResourceName     = $ResourceName
@@ -196,8 +210,13 @@ function Set-ControlResultObject {
         PropertieChecked = $PropertieToCheck
         CompliantValue   = $CompliantValue
         CurrentValue     = $CurrentValue
-        Compliance       = (Get-Compliance -CurrentValue $CurrentValue -CompliantValue $CompliantValue)
+        Compliance       = $Compliance
     }
-    $ControlResult | Add-Member -MemberType NoteProperty -Name $Resource.ResourceName -Value $Resource
+    try {
+        $ControlResult | Add-Member -MemberType NoteProperty -Name $Resource.ResourceName -Value $Resource
+    }
+    catch {
+        Write-Host "An error has occured during control"
+    }
     return $ControlResult 
 }
