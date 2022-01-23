@@ -50,7 +50,16 @@ foreach ($AuditSection in ($AuditOutput | Get-Member -MemberType NoteProperty).N
     $AuditOutput.$AuditSection | ConvertTo-Json -Depth 20 | Set-Content "./Reports/$AuditSection.json" -Force
 }
 
+#filter for compliant and uncompliant resources
+Get-DataFilteredByCompliance -ComplianceState "Compliant"
+Get-DataFilteredByCompliance -ComplianceState "Uncompliant"
+
 #Generate the Html output
-Format-HtmlTable -AuditSectionToPrint "AuditResult"
+$HtmlToGenerateList = @("AuditResult", "Compliant", "Uncompliant")
+foreach ($HtmlToGenerate in $HtmlToGenerateList) {
+    Format-HtmlTable -AuditSectionToPrint $HtmlToGenerate  
+}
 $CurrentPath = (Get-Location).Path
-Write-Host "`nAudit completed Successfully`nYou can consult the Audit result on a web page at $CurrentPath\Web\index.html" -ForegroundColor Green
+
+Write-Host "`nAudit completed Successfully`nYou can consult the Audit result on a web page at $CurrentPath\Web\AuditResult.html" -ForegroundColor Green
+.\Web\AuditResult.html

@@ -19,6 +19,27 @@ function Login {
     Write-Output "Connection successfully etablished`n"
 }
 
+
+<#
+.SYNOPSIS
+Get the Authentication Header to allow api call
+.OUTPUTS
+[Object] : Authentication Header to allow API call
+.NOTES
+Code get from Ms documentation
+#>
+function Get-ApiAuthHeader {
+    $azContext = Get-AzContext
+    $azProfile = [Microsoft.Azure.Commands.Common.Authentication.Abstractions.AzureRmProfileProvider]::Instance.Profile
+    $profileClient = New-Object -TypeName Microsoft.Azure.Commands.ResourceManager.Common.RMProfileClient -ArgumentList ($azProfile)
+    $token = $profileClient.AcquireAccessToken($azContext.Subscription.TenantId)
+    $authHeader = @{
+        'Content-Type'  = 'application/json'
+        'Authorization' = 'Bearer ' + $token.AccessToken
+    }
+    return $authHeader    
+}
+
 <#
 .SYNOPSIS
 Format a powershell custom object to an html format table
@@ -59,56 +80,8 @@ function Format-HtmlTable {
         }
     }
     $HtmlPage = $HtmlPage -replace "DATAHERE", $ElementToAdd
-    $HtmlPage | Set-Content -Path "./Web/index.html" -Force
+    $HtmlPage | Set-Content -Path "./Web/$($AuditSectionToPrint).html" -Force
 }
-
-
-function Format-HtmlTable2 {
-    param (
-        [Parameter(Mandatory = $true)][string]$AuditSectionToPrint
-    )
-    $HtmlPage = Get-content -path "./Web/initializer2.html"
-    $AllData = Get-content -path "./Reports/$AuditSectionToPrint.json" | Convertfrom-json
-    $ElementToAdd = ""
-
-    foreach ($SubjectToControl in ($AllData | Get-Member -memberType NoteProperty).Name) {
-        $ElementToAdd += "<h2>" + $SubjectToControl + "</h2><br>`n"
-            
-        foreach ($ControlPoint in ($AllData.$SubjectToControl | Get-Member -memberType NoteProperty).Name) {
-            #Remove the 0 before control point number like "2.03"
-            $split = $ControlPoint.Split(".", 2)
-            if ($split[1] -match "^0") {
-                $split[1] = $split[1].Replace("0", "")
-            }
-            $PrintedControlPoint = $split[0] + "." + $split[1]
-            $ElementToAdd += "<br><h3>" + $PrintedControlPoint + "</h3><br>`n"
-            $ElementToAdd += "<table class='rwd-table'>`n<tr>"
-            
-            $FistResource = ($AllData.$SubjectToControl.$ControlPoint | Get-Member -memberType NoteProperty).Name
-           
-            
-            if ($FirstResource.GetType().Name -match "Object") {
-                $FistResource = $FistResource[0]
-            }
-            foreach ($TableColumn in ($AllData.$SubjectToControl.$ControlPoint.$FistResource | Get-Member -memberType NoteProperty).Name) {
-                $ElementToAdd += "<th>$TableColumn</th>"
-                $AllColumn += $TableColumn #TODO fix foreach
-            }
-            $ElementToAdd += "</tr>`n<tr>"
-            foreach ($Resource in ($AllData.$SubjectToControl.$ControlPoint | Get-Member -memberType NoteProperty).Name) {
-                foreach ($TableColumn in ($AllData.$SubjectToControl.$ControlPoint.$Resource | Get-Member -memberType NoteProperty).Name) {
-                    $ElementToAdd += "<td data-th='$($TableColumn)'>$($AllData.$SubjectToControl.$ControlPoint.$Resource.$TableColumn)</td>"
-                }
-            }
-            $ElementToAdd += "</tr>"
-            $ElementToAdd += "</table>"
-        }
-
-    }
-    $HtmlPage = $HtmlPage -replace "DATAHERE", $ElementToAdd
-    $HtmlPage | Set-Content -Path "./Web/index.html" -Force
-}
-
 
 <#
 .SYNOPSIS
@@ -173,8 +146,6 @@ function Add-CisControlSetp {
     return $DataObject
 }
 
-
-
 <#
 .SYNOPSIS
 Set the object containing the result of the control for a unique resource
@@ -219,4 +190,65 @@ function Set-ControlResultObject {
         Write-Host "An error has occured during control"
     }
     return $ControlResult 
+}
+
+
+<#
+.SYNOPSIS
+Get the audit result with only compliant or uncompliant data
+.OUTPUTS
+[PsCustomObject] : The object containing the datas of filtered
+.NOTES
+Author : Maxime BOUDIER
+Version : 1.0.0
+#>
+function Get-DataFilteredByCompliance {
+    param (
+        [Parameter(Mandatory = $true)][string]$ComplianceState
+    )
+    $AllData = Get-Content ./Reports/AuditResult.json | ConvertFrom-Json
+    $SectionList = ($AllData | Get-Member -MemberType NoteProperty).Name
+    foreach ($Section in $SectionList) {
+        $AllControlPoint = ($AllData.$Section | Get-Member -memberType NoteProperty).Name
+        foreach ($ControlPoint in $AllControlPoint) {
+            $AllResources = ($AllData.$Section.$ControlPoint | Get-Member -memberType NoteProperty).Name
+            foreach ($Resource in $AllResources) {
+                if ($AllData.$Section.$ControlPoint.$Resource.Compliance -ne $ComplianceState) {
+                    $AllData.$Section.$ControlPoint.PSobject.properties.Remove("$Resource")
+                }
+            }
+        }
+    }
+    $AllData | ConvertTo-Json -Depth 20 | Set-Content "./Reports/$($ComplianceState).json" -Force
+    Remove-NullControlPoint -DataToCheck "$($ComplianceState)"
+}
+
+<#
+.SYNOPSIS
+Get the audit result with only compliant or uncompliant data
+.OUTPUTS
+[PsCustomObject] : The object containing the datas of filtered
+.NOTES
+Author : Maxime BOUDIER
+Version : 1.0.0
+#>
+function Remove-NullControlPoint {
+    param (
+        [Parameter(Mandatory = $true)][string]$DataToCheck
+    )
+    $AllData = Get-Content "./Reports/$($DataToCheck).json" | ConvertFrom-Json
+    $SectionList = ($AllData | Get-Member -MemberType NoteProperty).Name
+    foreach ($Section in $SectionList) {
+        $AllControlPoint = ($AllData.$Section | Get-Member -memberType NoteProperty).Name
+        if ($null -eq $AllcontrolPoint) {
+            $AllData.PsObject.Properties.Remove("$Section")
+        }
+        foreach ($ControlPoint in $AllControlPoint) {
+            $AllResources = ($AllData.$Section.$ControlPoint | Get-Member -memberType NoteProperty).Name
+            if ($null -eq $AllResources) {
+                $AllData.$Section.PsObject.Properties.Remove("$ControlPoint")
+            }
+        }
+    }
+    $AllData | ConvertTo-Json -Depth 20 | Set-Content "./Reports/$($DataToCheck).json" -Force
 }

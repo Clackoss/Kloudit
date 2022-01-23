@@ -3,6 +3,8 @@
  .rwd-table {
 	 margin: 0em 0;
 	 min-width: 300px;
+	 margin-left: auto;
+	 margin-right: auto;
 	 
 }
  .rwd-table tr {
@@ -54,6 +56,7 @@
 	 text-rendering: optimizeLegibility;
 	 color: #444;
 	 background: #eee;
+
 }
  h1 {
 	 font-weight: normal;

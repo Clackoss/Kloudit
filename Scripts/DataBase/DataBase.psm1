@@ -28,7 +28,11 @@ function Start-AuditDataBase {
         Write-Host "Check compliance for [DataBases : SQL Server] on subscription [$SubscriptionName] : [$SubscriptionId]" -ForegroundColor Cyan
         if ($AllSqlServer.count -gt 0) {
             ##4.1.1 & 4.1.3
-            #TODO
+            $CISPoint = @("4.01.1", "4.01.3")
+            $PropertiesToCheck = @("state", "retentionDays")
+            $CompliantValues = @("Enabled", "[91-365]")
+            $ControlName = "Ensure that Auditing [Propertie] is set to [Compliant]"
+            $DataBase = Add-CisControlSetp -DataObject $DataBase -CISPoint $CISPoint -PropertiesToCheck $PropertiesToCheck -CompliantValues $CompliantValues -ResourceType "SQLServer" -ControlName $ControlName -FunctionToCall "Get-SqlServerAuditConf"            
 
             if ($AllSqlDb.Count -gt 0) {
                 #CIS : 4.1.2
@@ -78,9 +82,12 @@ function Get-SqlServerAuditConf {
 
     $AllSqlServer = Get-AzResource -ResourceType "Microsoft.Sql/servers"
     foreach ($SqlServer in $AllSqlServer) {
-        $SqlServerAuditConf = (Get-AzSqlServerAudit -ResourceGroupName $SqlServer.ResourceGroupName -ServerName $SqlServer.Name).$PropertieToCheck
-        $Subscription = ($SqlServer.id -split ("/"))[2]
-        $ControlResult = Set-ControlResultObject -CurrentValue $SqlServerAuditConf -ControlResult $ControlResult -PropertieToCheck $PropertieToCheck -CompliantValue $CompliantValue -ResourceName $SqlServer.Name -Subscription $Subscription
+        $authHeader = Get-ApiAuthHeader
+        $uri = "https://management.azure.com/subscriptions/$($SqlServer.SubscriptionId)/resourceGroups/$($SqlServer.ResourceGroupName)/providers/Microsoft.Sql/servers/$($SqlServer.ResourceName)/auditingSettings?api-version=2017-03-01-preview"
+        $response = Invoke-RestMethod -Uri $Uri -Method Get -Headers $authHeader
+        $SqlServerAuditConf = $response.value.properties
+        $CurrentValue = [string]($SqlServerAuditConf.$PropertieToCheck)
+        $ControlResult = Set-ControlResultObject -CurrentValue $CurrentValue -ControlResult $ControlResult -PropertieToCheck $PropertieToCheck -CompliantValue $CompliantValue -ResourceName $SqlServer.Name -Subscription $SqlServer.SubscriptionId
     }
     return $ControlResult  
 }

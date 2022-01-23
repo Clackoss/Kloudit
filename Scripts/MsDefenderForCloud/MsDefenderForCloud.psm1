@@ -64,7 +64,7 @@ function Start-AuditMsDefenderForCloud {
         Write-Host "$ControlName is : $($MsDefenderForCloud.$ControlName.$SubscriptionId.Compliance)" 
 
         #2.13 Ensure 'Additional email addresses' is Configured with a Security Contact Email
-        $ControlName = "2.13 Ensure 'Additional email addresses' is Configured with a Security Contact Email"
+        $ControlName = "2.13 Ensure Additional email addresses' is Configured with a Security Contact Email"
         $SecurityEmail = Get-SecurityContact
         $MsDefenderForCloud | Add-Member -MemberType NoteProperty -Name $ControlName -Value $SecurityEmail -Force
         Write-Host "$ControlName is : $($MsDefenderForCloud.$ControlName.$SubscriptionId.Compliance)" 
