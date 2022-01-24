@@ -1,2 +1,5 @@
 Reports/*
 Reports\AuditResult.json
+web/compliant.html
+web/uncompliant.html
+web/AuditResult.html
