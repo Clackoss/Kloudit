@@ -106,6 +106,7 @@ function Get-Compliance {
 }
 
 <#
+TODO : Change to remove Invoke-expression mechanism
 .SYNOPSIS
 Add a Cis control step and print the current check
 .OUTPUTS
@@ -251,4 +252,33 @@ function Remove-NullControlPoint {
         }
     }
     $AllData | ConvertTo-Json -Depth 20 | Set-Content "./Reports/$($DataToCheck).json" -Force
+}
+
+<#
+.SYNOPSIS
+Get the count of compliant and Uncompliant resources for each Section
+.OUTPUTS
+[PsCustomObject] : The object containing the count of Compliant/Uncompliant for each
+.NOTES
+Author : Maxime BOUDIER
+Version : 1.0.0
+#>
+function Get-complianceCount {
+    $StateToCheck = @("Compliant", "Uncompliant")
+    $CountObject = [PSCustomObject]@{
+        Compliant   = @{}
+        Uncompliant = @{}
+    }
+    foreach ($State in $StateToCheck) {
+        $AllData = Get-Content "./Reports/$($State).json" | ConvertFrom-Json
+        $SectionList = ($AllData | Get-Member -MemberType NoteProperty).Name
+        foreach ($Section in $SectionList) {
+            $CountObject.$State | Add-Member -MemberType NoteProperty -Name $Section -Value 0
+            $SectionStateCount = (($AllData.$Section | Get-Member -memberType NoteProperty).Name).Count
+            $CountObject.$State.$Section = $SectionStateCount
+            $TotalForState += $SectionStateCount
+        }
+        $CountObject.$State | Add-Member -MemberType NoteProperty -Name "Total" -Value $TotalForState
+    }  
+    return $CountObject
 }

@@ -1,11 +1,297 @@
 /* https://codepen.io/vineethtrv/pen/xGjQOX
-https://codepen.io/darcyvoutt/pen/dnEBj
+https://codepen.io/darcyvoutt/pen/dnEBj */
 
-table 
-https://codepen.io/ivillamil/pen/jWjgzE
-https://codepen.io/pablorgarcia/pen/qdIsm
-https://codepen.io/lukepeters/pen/bfFur
-https://codepen.io/geoffyuen/pen/FCBEg
 
-menue
-https://codepen.io/wbarlow/pen/NqLWXJ */
+  
+  .margin {
+    margin: 0px;
+  }
+  
+  .semi-donut {
+    --percentage: 0;
+    --fill: #ff0;
+    width: 300px;
+    height: 150px;
+    position: relative;
+    color: #fff;
+    font-size: 22px;
+    font-weight: 600;
+    overflow: hidden;
+    color: var(--fill);
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    box-sizing: border-box;
+  }
+  .semi-donut:after {
+    content: "";
+    width: 300px;
+    height: 300px;
+    border: 50px solid;
+    border-color: rgba(0, 0, 0, 0.15) rgba(0, 0, 0, 0.15) var(--fill) var(--fill);
+    position: absolute;
+    border-radius: 50%;
+    left: 0;
+    top: 0;
+    box-sizing: border-box;
+    transform: rotate(calc(1deg * (-45 + var(--percentage) * 1.8)));
+    -webkit-animation: fillAnimation 1s ease-in;
+            animation: fillAnimation 1s ease-in;
+  }
+  
+  .semi-donut-model-2 {
+    width: 300px;
+    height: 150px;
+    position: relative;
+    text-align: center;
+    color: #fff;
+    font-size: 22px;
+    font-weight: 600;
+    border-radius: 150px 150px 0 0;
+    overflow: hidden;
+    color: var(--fill);
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    box-sizing: border-box;
+  }
+  .semi-donut-model-2:before, .semi-donut-model-2:after {
+    content: "";
+    width: 300px;
+    height: 150px;
+    border: 50px solid var(--fill);
+    border-top: none;
+    position: absolute;
+    transform-origin: 50% 0% 0;
+    border-radius: 0 0 300px 300px;
+    box-sizing: border-box;
+    left: 0;
+    top: 100%;
+  }
+  .semi-donut-model-2:before {
+    border-color: rgba(0, 0, 0, 0.15);
+    transform: rotate(180deg);
+  }
+  .semi-donut-model-2:after {
+    z-index: 3;
+    -webkit-animation: 1s fillGraphAnimation ease-in;
+            animation: 1s fillGraphAnimation ease-in;
+    transform: rotate(calc(1deg * (var(--percentage) * 1.8)));
+  }
+  .semi-donut-model-2:hover:after {
+    opacity: 0.8;
+    cursor: pointer;
+  }
+  
+  @-webkit-keyframes fillAnimation {
+    0% {
+      transform: rotate(-45deg);
+    }
+    50% {
+      transform: rotate(135deg);
+    }
+  }
+  
+  @keyframes fillAnimation {
+    0% {
+      transform: rotate(-45deg);
+    }
+    50% {
+      transform: rotate(135deg);
+    }
+  }
+  @-webkit-keyframes fillGraphAnimation {
+    0% {
+      transform: rotate(0deg);
+    }
+    50% {
+      transform: rotate(180deg);
+    }
+  }
+  @keyframes fillGraphAnimation {
+    0% {
+      transform: rotate(0deg);
+    }
+    50% {
+      transform: rotate(180deg);
+    }
+  }
+
+  /* Mixings &  Variables */
+.clearfix,
+.clearfix:before,
+.clearfix:after {
+  display: block;
+  content: " ";
+  clear: both;
+  zoom: 1;
+}
+/* Resets */
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+body {
+  background: #EDF2F6;
+  font-family: Arial;
+  color: #444;
+}
+.wrap {
+  margin: 0 auto;
+  padding: 50px;
+  max-width: 1200px;
+}
+/* Bar Graph Class */
+.barGraph {
+  position: relative;
+  width: 110%;
+  height: auto;
+  margin-bottom: 50px;
+}
+.graph {
+  position: relative;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  width: calc(100% - 4%);
+  left: 4%;
+}
+.graph-barBack {
+  border-radius: 2px;
+  background: #DAE4EB;
+  margin-bottom: 10px;
+  display: block;
+}
+.graph-bar {
+  background-color: #10a7ff;
+  -webkit-transition: all 1s ease-out;
+  -moz-transition: all 1s ease-out;
+  -o-transition: all 1s ease-out;
+  transition: all 1s ease-out;
+  border-radius: 2px;
+  cursor: pointer;
+  margin-bottom: 10px;
+  position: relative;
+  z-index: 9999;
+  display: block;
+  height: 20px;
+  width: 0%;
+}
+.graph-bar:hover {
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  background: #34495e;
+}
+.graph-bar:last-child {
+  margin-bottom: 0;
+}
+.graph-bar:after {
+  position: absolute;
+  content: attr(data-value);
+  display: none;
+  font-size: 12px;
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  line-height: 20px;
+  height: 20px;
+  padding: 0 10px;
+  margin-left: 5px;
+  left: 100%;
+  top: 0;
+}
+.graph-bar:hover:after {
+  display: block;
+}
+.graph-legend {
+  position: absolute;
+  margin-right: 5px;
+  left: -180px;
+  z-index: 9999;
+}
+/* Lines for Charts */
+.lines {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: 0;
+  left: 0;
+  top: 0;
+}
+.lines-horz {
+  border-bottom: 1px dashed rgba(113, 125, 149, 0.4);
+  position: absolute;
+  width: 100%;
+  height: 0px;
+}
+.lines-horz:nth-of-type(1) {
+  top: 20%;
+}
+.lines-horz:nth-of-type(2) {
+  top: 40%;
+}
+.lines-horz:nth-of-type(3) {
+  top: 60%;
+}
+.lines-horz:nth-of-type(4) {
+  top: 80%;
+}
+.lines-vert {
+  border-right: 1px dashed rgba(113, 125, 149, 0.4);
+  position: absolute;
+  height: 100%;
+  width: 1px;
+}
+.lines-vert:nth-of-type(5) {
+  left: 20%;
+}
+.lines-vert:nth-of-type(6) {
+  left: 40%;
+}
+.lines-vert:nth-of-type(7) {
+  left: 60%;
+}
+.lines-vert:nth-of-type(8) {
+  left: 80%;
+}
+/* Line Graph */
+.lineChart {
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  border-radius: 3px;
+  border: 2px solid rgba(113, 125, 149, 0.45);
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 300px;
+}
+.lineChart svg {
+  position: absolute;
+  z-index: 999;
+}
+.lineChart circle {
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  position: relative;
+  cursor: pointer;
+  stroke: #34495e;
+  stroke-width: 3;
+  fill: #34495e;
+}
+.lineChart circle:hover {
+  stroke-width: 8;
+}
+.lineChart line {
+  stroke: #717D95;
+  stroke-width: 4;
+}
+.trend line {
+  stroke: rgba(204, 51, 51, 0.8);
+}

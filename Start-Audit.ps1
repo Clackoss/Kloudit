@@ -4,9 +4,9 @@ $logo
 Write-Output "`nStarting the Configuration Audit of your Azure infrastructure"
 
 #Import Modules
-$Modules = (Get-ChildItem -Path "./Scripts").Name
+$Modules = (Get-ChildItem -Path "./Lib").Name
 foreach ($Module in $Modules) {
-    Import-Module "./Scripts/$Module" -Force
+    Import-Module "./Lib/$Module" -Force
 }
 Write-Output "Modules successfully imported"
 
