@@ -13,7 +13,6 @@ Write-Output "Modules successfully imported"
 #Login to azure
 Login
 
-
 #Define the Audit output
 $AuditOutput = [PSCustomObject]@{}
 
@@ -24,19 +23,24 @@ $SubscriptionList = Get-azSubscription
 
 
 ##Audit the Ms Defender For cloud section##
-    
 $MsDefenderForCloudResult = Start-AuditMsDefenderForCloud -SubscriptionList $SubscriptionList
-$AuditOutput | Add-Member -MemberType NoteProperty -Name "2 - Microsoft Defender For Cloud" -Value $MsDefenderForCloudResult
+if ($null -ne $MsDefenderForCloudResult) {
+    $AuditOutput | Add-Member -MemberType NoteProperty -Name "2 - Microsoft Defender For Cloud" -Value $MsDefenderForCloudResult
+}
 Write-Host "`nAudit for MsDefenderForCloud Finished`n"
 
 ##Audit the Storage Accounts section##
 $StorageAccountResult = Start-AuditStorageAccount -SubscriptionList $SubscriptionList
-$AuditOutput | Add-Member -MemberType NoteProperty -Name "3 - Storage Accounts" -Value $StorageAccountResult
+if ($null -ne $StorageAccountResult) {
+    $AuditOutput | Add-Member -MemberType NoteProperty -Name "3 - Storage Accounts" -Value $StorageAccountResult   
+}
 Write-Host "`nAudit for StorageAccount Finished`n"
 
 ##Audit de Database Section##
 $DataBaseResult = Start-AuditDataBase -SubscriptionList $SubscriptionList
-$AuditOutput | Add-Member -MemberType NoteProperty -Name "4 - Data Bases" -Value $DataBaseResult
+if ($null -ne $DataBaseResult) {
+    $AuditOutput | Add-Member -MemberType NoteProperty -Name "4 - Data Bases" -Value $DataBaseResult   
+}
 Write-Host "`nAudit for DataBases Finished`n"
 
 foreach ($AuditSection in ($AuditOutput | Get-Member -MemberType NoteProperty).Name) {

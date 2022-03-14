@@ -1,12 +1,10 @@
 <#
 .SYNOPSIS
 Call and print the audit actions for MsDefenderForcloud section
-.DESCRIPTION
-Call and print the audit actions for MsDefenderForcloud section
 .OUTPUTS
 [Pscustomobject] : An object containing the result of the audit for Msdefenderforcloud section
 .EXAMPLE
-Start-MsDefenderForCloudAudit
+Start-MsDefenderForCloudAudit -SubscriptionList $subscriptionList
 .NOTES
 Author : Maxime BOUDIER
 Version : 1.0.0
@@ -22,6 +20,13 @@ function Start-AuditMsDefenderForCloud {
     foreach ($Subscription in $SubscriptionList) {
         $SubscriptionName = $Subscription.Name
         $SubscriptionId = $Subscription.Id
+        $Authheader = Get-ApiAuthHeader
+        $uri = "https://management.azure.com/subscriptions/$($SubscriptionId)/providers/Microsoft.Security?api-version=2021-04-01"
+        $SecurityProviderState = Invoke-RestMethod -Uri $Uri -Method Get -Headers $authHeader
+        if ($SecurityProviderState.registrationState -ne "Registered") {
+            Write-Host "Provider Microsoft.Security not Register on subscription [$SubscriptionName]"
+            return
+        }
         Set-AzContext -Subscription $SubscriptionId | Out-null
 
         Write-Host "`nCheck compliance for MsDefenderForCloud on subscription [$SubscriptionName] : [$SubscriptionId]" -ForegroundColor Cyan

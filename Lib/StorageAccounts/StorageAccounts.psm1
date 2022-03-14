@@ -1,8 +1,6 @@
 <#
 .SYNOPSIS
-Call and print the audit actions for MsDefenderForcloud section
-.DESCRIPTION
-Call and print the audit actions for MsDefenderForcloud section
+Call and print the audit actions for Storage Account section
 .OUTPUTS
 [Pscustomobject] : An object containing the result of the audit for StorageAccounts section
 .EXAMPLE

@@ -19,7 +19,6 @@ function Login {
     Write-Output "Connection successfully etablished`n"
 }
 
-
 <#
 .SYNOPSIS
 Get the Authentication Header to allow api call
@@ -43,13 +42,8 @@ function Get-ApiAuthHeader {
 <#
 .SYNOPSIS
 Format a powershell custom object to an html format table
-.DESCRIPTION
-Format a powershell custom object to an html format table
 .OUTPUTS
 An html file with the html table in
-.NOTES
-Author : Maxime BOUDIER
-Version : 1.0.0
 #>
 function Format-HtmlTable {
     param (
@@ -88,9 +82,6 @@ function Format-HtmlTable {
 Check if a resource config is compliant with the CIS recomandations
 .OUTPUTS
 [String] : Compliant/Uncompliant according to CIS Recomandations
-.NOTES
-Author : Maxime BOUDIER
-Version : 1.0.0
 #>
 function Get-Compliance {
     param (
@@ -111,9 +102,6 @@ TODO : Change to remove Invoke-expression mechanism
 Add a Cis control step and print the current check
 .OUTPUTS
 [PsCustomObject] : The dataobject that will be return the section main object
-.NOTES
-Author : Maxime BOUDIER
-Version : 1.0.0
 #>
 function Add-CisControlSetp {
     param (
@@ -126,6 +114,7 @@ function Add-CisControlSetp {
         [Parameter(Mandatory = $true)][string]$ControlName    
     )
     for ($i = 0; $i -lt $CISPoint.Count; $i++) {
+        #Remplace the "Propertie" & "compliance" from the param to the correct values
         $ControlNameReplaced = $ControlName.Replace("Propertie", $($PropertiesToCheck[$i]))
         $ControlNameReplaced = $ControlNameReplaced.Replace("Compliant", $($CompliantValues[$i]))
         $ControlNameToPrint = $($CISPoint[$i]) + " " + $ControlNameReplaced
