@@ -70,7 +70,7 @@ function Start-AuditMsDefenderForCloud {
 
         #2.13 Ensure 'Additional email addresses' is Configured with a Security Contact Email
         $ControlName = "2.13 Ensure Additional email addresses' is Configured with a Security Contact Email"
-        $SecurityEmail = Get-SecurityContact
+        $SecurityEmail = Get-SecurityContact -Subscription $SubscriptionId
         $MsDefenderForCloud | Add-Member -MemberType NoteProperty -Name $ControlName -Value $SecurityEmail -Force
         Write-Host "$ControlName is : $($MsDefenderForCloud.$ControlName.$SubscriptionId.Compliance)" 
 
@@ -194,10 +194,12 @@ Author : Maxime BOUDIER
 Version : 1.0.0
 #>
 function Get-SecurityContact {
+    param (
+        [Parameter(Mandatory = $true)][string]$SubscriptionId
+    )
     $Res = Get-AzSecurityContact
     $ControlResult = [PSCustomObject]@{}
-    $Subscription = ($Res.id -split ("/"))[2]
-    if ($Res.Email -eq "") {
+    if (($Res.Email -eq "") -or ($null -eq $Res)) {
         $SecurityContact = "Null"
     }
     $ControlResult = Set-ControlResultObject -CurrentValue $SecurityContact -ResourceName $Subscription -ControlResult $ControlResult -PropertieToCheck "Email" -CompliantValue "/WNull" -Subscription $Subscription
