@@ -2,6 +2,9 @@
 
 Welcome to Kloudit, an open source tool to **audit the security compliance** of your Azure resources configurations !
 
+NB : This project is still in developpement. For now, only control point from CIS benchmark for section Microsoft Defender for cloud and Storage Account are available.
+Thanks :)
+
 ## What is Kloudit ?
 
 Kloudit is an open-source project to control the configurations of your resources hosted in Azure.
@@ -112,6 +115,7 @@ Now the script is running. Once the scripts is over, it should open a web page d
 If no pages open you can open it manually by opening the html file in *ProjectPath/Kloudit/web/AuditResult.html*
 
 ## Next steps
-On going !
-
-3.4 not doable
+Next steps for Kloudit include:
+    - Add CIS security checkpoints
+    - Improve the documentation
+    - Add checkpoints from other repositories
