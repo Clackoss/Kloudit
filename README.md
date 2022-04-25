@@ -42,55 +42,75 @@ To add Read permission on a given scope you can do as this :
     - Go on the scope you want to audit (Management Groups or Subscription)
     - select IAM -> Add role assignement -> Reader -> Identity used.
 
-### 4. Allow Script Execution
+### 2. Allow Script Execution
 Kloudit is a PowerShell script, so to use it you must allow the execution of scripts on you computer.
 
-`Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope CurrentUser`
+```Powershell
+Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope CurrentUser
+```
 
 After using Kloudit you can re-set Execution Policy to default
-
+```Powershell
+Set-ExecutionPolicy -ExecutionPolicy Default -Scope CurrentUser
+```
 
 ### 3. Have PowerShell 7 or upper installed.
 There are several ways to install Powershell
 To install Powershell 7 from command line follow this.
 
-*On Windows :* 
+**On Windows :**
 
-`msiexec.exe /package PowerShell-7.2.2-win-x64.msi /quiet ADD_EXPLORER_CONTEXT_MENU_OPENPOWERSHELL=1 ENABLE_PSREMOTING=1 REGISTER_MANIFEST=1 USE_MU=1 ENABLE_MU=1`
+```
+msiexec.exe /package PowerShell-7.2.2-win-x64.msi /quiet ADD_EXPLORER_CONTEXT_MENU_OPENPOWERSHELL=1 ENABLE_PSREMOTING=1 REGISTER_MANIFEST=1 USE_MU=1 ENABLE_MU=1
+```
 
-Microsoft docs : https://docs.microsoft.com/en-us/powershell/scripting/install/installing-powershell-on-windows?view=powershell-7.2
+*Microsoft docs : https://docs.microsoft.com/en-us/powershell/scripting/install/installing-powershell-on-windows?view=powershell-7.2*
 
-On MacOs :
-`brew install --cask powershell`
+**On MacOs :**
 
-Microsoft docs : https://docs.microsoft.com/en-us/powershell/scripting/install/installing-powershell-on-macos?view=powershell-7.2
+```
+brew install --cask powershell
+```
 
-On Linux (Ubuntu) :
+*Microsoft docs : https://docs.microsoft.com/en-us/powershell/scripting/install/installing-powershell-on-macos?view=powershell-7.2*
 
-`sudo dpkg -i powershell-lts_7.2.2-1.deb_amd64.deb`
+**On Linux (Ubuntu) :**
 
-`sudo apt-get install -f`
+```
+sudo dpkg -i powershell-lts_7.2.2-1.deb_amd64.deb
+sudo apt-get install -f
+```
 
-Microsoft docs : https://docs.microsoft.com/en-us/powershell/scripting/install/install-ubuntu?view=powershell-7.2
+*Microsoft docs : https://docs.microsoft.com/en-us/powershell/scripting/install/install-ubuntu?view=powershell-7.2*
 
 To check that Powershell 7 is properly installed, open a shell and run `pwsh`
 
-### 4. Install Azure Powershell
-Install Azure PowerShell to used Azure commandlets 
+### 4. Have Azure Powershell Installed
+Install Azure PowerShell to used Azure cmdlet.
+
+First open a shell and run `pwsh` to start powershell 7.
+
+Then install Azure PowerShell Module :
+```Powershell
+Install-Module -Name Az -Scope CurrentUser -Repository PSGallery -Force
+```
+
+*Microsoft docs : https://docs.microsoft.com/fr-fr/powershell/azure/install-az-ps?view=azps-7.4.0*
 
 ## How to Use Kloudit
+Once the requirements are done, this is how to used Kloudit.
+
+1. Download the project from github.
+    ```
+    git clone https://github.com/Clackoss/Kloudit.git
+    ```
+2. Open a Shell and Run `pwsh`
+3. From shell go on the project path `cd Path/Kloudit/` then run `./start-audit.ps1`
+
+Now the script is running. Once the scripts is over, it should open a web page displaying the results.
+
+If no pages open you can open it manually by opening the html file in *ProjectPath/Kloudit/web/AuditResult.html*
 
 ## Next steps
-
-
-
-
-
-
-Powerhsell 7 mini
-Azure powerhsell
-An Azure account with Golbal Reader Right
-
-All the security Controls points are based on the CIS brenchmark fundation for Azure (Version 1.4.0)
-
+On going !
 3.4 not doable
