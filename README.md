@@ -1,6 +1,6 @@
 # Kloudit
 
-Welcome to Kloudit, an open source tool to control the security compliance of your Azure resources configurations !
+Welcome to Kloudit, an open source tool to audit the security compliance of your Azure resources configurations !
 
 ## What is Kloudit ?
 
