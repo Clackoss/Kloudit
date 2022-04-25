@@ -115,7 +115,7 @@ Now the script is running. Once the scripts is over, it should open a web page d
 If no pages open you can open it manually by opening the html file in *ProjectPath/Kloudit/web/AuditResult.html*
 
 ## Next steps
-This are the next steps for Kloudit :
-    - Add the CIS security control points
+Next steps for Kloudit include:
+    - Add CIS security checkpoints
     - Improve the documentation
-    - Add Control point from other referentials
+    - Add checkpoints from other repositories
