@@ -86,7 +86,7 @@ sudo apt-get install -f
 To check that Powershell 7 is properly installed, open a shell and run `pwsh`
 
 ### 4. Have Azure Powershell Installed
-Install Azure PowerShell to used Azure cmdlet.
+Install Azure PowerShell to use Azure cmdlet.
 
 First open a shell and run `pwsh` to start powershell 7.
 
@@ -105,7 +105,7 @@ Once the requirements are done, this is how to used Kloudit.
     git clone https://github.com/Clackoss/Kloudit.git
     ```
 2. Open a Shell and Run `pwsh`
-3. From shell go on the project path `cd Path/Kloudit/` then run `./start-audit.ps1`
+3. From shell go on the project path `cd Path/Kloudit/` then run `./start-Audit.ps1`
 
 Now the script is running. Once the scripts is over, it should open a web page displaying the results.
 
@@ -113,4 +113,5 @@ If no pages open you can open it manually by opening the html file in *ProjectPa
 
 ## Next steps
 On going !
+
 3.4 not doable
