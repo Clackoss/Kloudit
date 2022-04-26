@@ -1,9 +1,27 @@
-$logo = Get-Content -Path "banner.txt"
-Write-Output "`n`n"
-$logo
+<#
+.SYNOPSIS
+ Script that start the audit of the different components
+.DESCRIPTION
+ Script that start the audit of the different components
+ For now component Audited according to CIS are :
+ - MsDefenderForCloud
+ - Storage Accounts
+.OUTPUTS
+ [JsonFile] : Data get from API call stored as json file in ./Reports/
+ [HtmlFile] : Data get from Json formated into a web report in ./web/
+.EXAMPLE
+ ./Start-Audit.ps1 
+.NOTES
+Author : Maxime BOUDIER
+Version : 0.0.1
+#>
+
+#Print Kloudit Logo
+$Logo = Get-Content -Path "./banner.txt"
+Write-Output "`n`n$Logo"
 Write-Output "`nStarting the Configuration Audit of your Azure infrastructure"
 
-#Import Modules
+#Import Modules from ./Lib
 $Modules = (Get-ChildItem -Path "./Lib").Name
 foreach ($Module in $Modules) {
     Import-Module "./Lib/$Module" -Force
@@ -13,14 +31,10 @@ Write-Output "Modules successfully imported"
 #Login to azure
 Login
 
-#Define the Audit output
+#Define the Audit output varaible
 $AuditOutput = [PSCustomObject]@{}
-
 #Get all Azure subscriptions
 $SubscriptionList = Get-azSubscription
-
-#Skip IAM section for the moment
-
 
 ##Audit the Ms Defender For cloud section##
 $MsDefenderForCloudResult = Start-AuditMsDefenderForCloud -SubscriptionList $SubscriptionList
@@ -36,7 +50,7 @@ if ($null -ne $StorageAccountResult) {
 }
 Write-Host "`nAudit for StorageAccount Finished`n"
 
-##Audit de Database Section##
+##Audit Database Section##
 $DataBaseResult = Start-AuditDataBase -SubscriptionList $SubscriptionList
 if ($null -ne $DataBaseResult) {
     $AuditOutput | Add-Member -MemberType NoteProperty -Name "4 - Data Bases" -Value $DataBaseResult   
@@ -66,4 +80,5 @@ foreach ($HtmlToGenerate in $HtmlToGenerateList) {
 $CurrentPath = (Get-Location).Path
 
 Write-Host "`nAudit completed Successfully`nYou can consult the Audit result on a web page at $CurrentPath\Web\AuditResult.html" -ForegroundColor Green
+#Display result on a web page
 .\Web\AuditResult.html
