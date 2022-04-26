@@ -23,8 +23,8 @@ $Logo
 Write-Output "`nStarting the Configuration Audit of your Azure infrastructure"
 
 #Import Modules from ./Lib
-$Modules = (Get-ChildItem -Path "./Lib").Name
-foreach ($Module in $Modules) {
+$ModuleList = (Get-ChildItem -Path "./Lib").Name
+foreach ($Module in $ModuleList) {
     Import-Module "./Lib/$Module" -Force
 }
 Write-Output "Modules successfully imported"
