@@ -18,7 +18,8 @@ Version : 0.0.1
 
 #Print Kloudit Logo
 $Logo = Get-Content -Path "./banner.txt"
-Write-Output "`n`n$Logo"
+Write-Output "`n`n"
+$Logo
 Write-Output "`nStarting the Configuration Audit of your Azure infrastructure"
 
 #Import Modules from ./Lib
