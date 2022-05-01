@@ -271,3 +271,6 @@ function Get-complianceCount {
     }  
     return $CountObject
 }
+
+
+###Build a function "conStruct-object / Structure-object"###

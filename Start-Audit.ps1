@@ -58,6 +58,12 @@ if ($null -ne $DataBaseResult) {
 }
 Write-Host "`nAudit for DataBases Finished`n"
 
+##Audit Logging & Monitoring Section##
+$LoggingAndMonitoring = Start-AuditLoggingAndMonitoring -SubscriptionList $SubscriptionList
+if ($null -ne $LoggingAndMonitoring) {
+    $AuditOutput | Add-Member -MemberType NoteProperty -Name "5 - Logging and Monitoring" -Value $LoggingAndMonitoring
+}
+
 foreach ($AuditSection in ($AuditOutput | Get-Member -MemberType NoteProperty).Name) {
     $AuditOutput.$AuditSection = $AuditOutput.$AuditSection | Sort-Object
 }
