@@ -36,10 +36,15 @@ function Start-AuditLoggingAndMonitoring {
 }
 
 
-
+<#
+.SYNOPSIS
+Function that check is an activity log alert is enabled for a Operation Given
+.OUTPUTS
+[PSCustomObject] : The result of the test for the current audited Subscription
+#>
 function Get-ActivityLogAlertsByService {
     param (
-        # The service you want to get the Activity Log alert
+        # The service you want to get the Activity Log alert (ex : Microsoft.Authorization/Policy/write)
         [Parameter(Mandatory = $true)][string]$OperationName,
         # The SubscriptionId to Audit
         [Parameter(Mandatory = $true)][string]$SubscriptionId,
