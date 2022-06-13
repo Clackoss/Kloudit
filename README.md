@@ -119,3 +119,7 @@ Next steps for Kloudit include:
     - Add CIS security checkpoints
     - Improve the documentation
     - Add checkpoints from other repositories
+
+Point unauditable due to technical or gourvernance issue.
+- 3.4
+- 5.1.2

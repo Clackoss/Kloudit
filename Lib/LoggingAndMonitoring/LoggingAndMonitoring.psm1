@@ -12,10 +12,21 @@ function Start-AuditLoggingAndMonitoring {
     foreach ($Subscription in $SubscriptionList) {
         $SubscriptionName = $Subscription.Name
         $SubscriptionId = $Subscription.Id
+        Set-AzContext -Subscription $Subscription
 
         Write-Host "Check compliance for [Monitoring using Activity Log Alerts] on subscription [$SubscriptionName] : [$SubscriptionId]" -ForegroundColor Cyan 
 
+        Write-Host "5.1 Configuring Diagnostic Settings" -ForegroundColor Green
+        #CIS : 5.1.1 - For Storage accounts, Azure sql server, VM, vnet, app service only
+        Write-Host "5.1.1 Ensure that a 'Diagnostics Setting' exists" -ForegroundColor Blue
+        $ResourceTypeForDiagSettings = @("Microsoft.Storage/storageAccounts", "Microsoft.Sql/servers", "Microsoft.Network/virtualNetworks", "Microsoft.Web/sites")
+        foreach ($ResourceType in $ResourceTypeForDiagSettings) {
+            $ControlPointValue = Get-DiagSettingsPerService -ResourceType $ResourceType -SubscriptionId $SubscriptionId
+        }
+        $LoggingAndMonitoring | Add-Member -MemberType NoteProperty -Name "5.1.1 Ensure that a 'Diagnostics Setting' exists" -Value $ControlPointValue
+
         #CIS : 5.2.1 to 5.2.9
+        Write-Host "5.2 Monitoring using Activity Log Alerts" -ForegroundColor Green
         $OperationNameToCheck = @("microsoft.authorization/policyassignments/write", "microsoft.authorization/policyassignments/delete", "microsoft.network/networksecuritygroups/write", "microsoft.Network/networkSecurityGroups/delete", "microsoft.network/networksecuritygroups/securityrules/write",
             "microsoft.network/networksecuritygroups/securityrules/delete", "microsoft.security/securitysolutions/write", "microsoft.security/securitysolutions/delete", "microsoft.sql/servers/firewallrules/write")
         $ControlName = @("5.2.1 Ensure that Activity Log Alert exists for Create Policy Assignment", "5.2.2 Ensure that Activity Log Alert exists for Delete Policy Assignment", "5.2.3 Ensure that Activity Log Alert exists for Create or Update Network
@@ -29,11 +40,44 @@ function Start-AuditLoggingAndMonitoring {
         for ($i = 0; $i -lt 9; $i++) {
             $ControlPointValue = Get-ActivityLogAlertsByService -operationName $OperationNameToCheck[$i] -SubscriptionId $SubscriptionId -CompliantValue "True"
             $LoggingAndMonitoring | Add-Member -MemberType NoteProperty -Name $ControlName[$i] -Value $ControlPointValue
-            Write-Host "$($ControlName[$i]) is $($ControlPointValue.$SubscriptionId.compliance)"
+            Write-Host "$($ControlName[$i]) is : $($ControlPointValue.$SubscriptionId.compliance)"
         }
     }
     return $LoggingAndMonitoring
 }
+
+
+
+
+
+function Get-DiagSettingsPerService {
+    param (
+        # ResourceType to get the diag settings on 
+        [Parameter(Mandatory = $true)][string]$ResourceType,
+        [Parameter(Mandatory = $true)][string]$SubscriptionId
+    )
+    $ControlResult = [PSCustomObject]@{}
+    $AllResourceForType = Get-AzResource -ResourceType $ResourceType
+
+    foreach ($ResourcePerType in $AllResourceForType) {
+        $DiagSettingApiUri = "https://management.azure.com/$($ResourcePerType.ResourceId)/providers/Microsoft.Insights/diagnosticSettings?api-version=2021-05-01-preview"
+        $AuthHeader = Get-ApiAuthHeader
+        $DiagSettingOnResource = Invoke-RestMethod -Method GET -Uri $DiagSettingApiUri -Headers $AuthHeader
+
+        if ($null -eq $DiagSettingOnResource -or "" -eq $DiagSettingOnResource.value) {
+            $ControlResult = Set-ControlResultObject -CurrentValue "Not Configured" -ResourceName $ResourcePerType.ResourceName -ControlResult $ControlResult -PropertieToCheck "Diagnostic Settings" -CompliantValue "Enabled" -Subscription $SubscriptionId
+            Write-Host "Diagnostic Settings on resource [$($ResourcePerType.ResourceName)] are : Uncompliant"
+        }
+        else {
+            $ControlResult = Set-ControlResultObject -CurrentValue "Enabled" -ResourceName $ResourcePerType.ResourceName -ControlResult $ControlResult -PropertieToCheck "Diagnostic Settings" -CompliantValue "Enabled" -Subscription $SubscriptionId
+            Write-Host "Diagnostic Settings on resource [$($ResourcePerType.ResourceName)] are : Compliant"
+        }
+    }
+    return $ControlResult
+}
+
+
+
 
 
 <#
