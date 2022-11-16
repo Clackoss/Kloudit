@@ -22,7 +22,7 @@ Scans of your infrastructure will be performed using the name and permissions of
 
 ### 2. How are Data managed ?
 When you run Kloudit, the script will get your configuration data with API calls.
-Then a display is done one a web format.
+Then a display is done on a web format.
 The data get by Kloudit are never published online, everything is stored locally on you machine ;
  - As json format in *ProjectPath/Reports/files.json*
  - As html format in *ProjectPath/Web/files.html* 
